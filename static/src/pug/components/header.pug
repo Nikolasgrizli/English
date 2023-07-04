@@ -1,0 +1,110 @@
+mixin header(data)
+	- data = data || {}
+	-
+		var links = [
+			{
+				name: 'Car Loans',
+				link: 'link',
+			},
+			{
+				name: 'Home Loans',
+				link: 'link',
+			},
+			//- {
+			//- 	name: 'Personal Loans',
+			//- 	link: 'link',
+			//- },
+			{
+				name: 'Calculators',
+				link: '#calcs',
+			},
+			{
+				name: 'About Us',
+				link: 'link',
+			},
+
+		]
+	.header
+		.header__container
+			a.logo-site(href="/")
+				.logo-inner
+					| English
+				//- img(src=`${pathPrefix}img/logos/logo.svg`, alt="", width="140" height="48")
+				//- +icon('logo')
+
+			//- nav.header__nav
+			//- 	ul.nav.nav-header
+			//- 		li#menu-item-101.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-has-children.menu-item-101
+			//- 			a.nav__link(href='https://mny.com.au/car-loans/') Car Loans
+			//- 			ul.sub-menu
+			//- 				li#menu-item-192.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-192
+			//- 					a.nav__link(href='https://mny.com.au/car-loans-for-bad-credit/') Car Loans For Bad Credit
+			//- 				li#menu-item-193.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-193
+			//- 					a.nav__link(href='https://mny.com.au/car-loans-comparison-for-australia/') Car Loan Comparison for Australia
+			//- 				li#menu-item-194.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-194
+			//- 					a.nav__link(href='https://mny.com.au/motorcycle-loans-and-financing/') Motorcycle Finance in Australia
+			//- 				li#menu-item-195.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-195
+			//- 					a.nav__link(href='https://mny.com.au/caravan-loans-and-finance/') Caravan Finance in Australia
+			//- 				li#menu-item-196.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-196
+			//- 					a.nav__link(href='https://mny.com.au/boat-loans-and-finance/') Boat Loans and Finance
+			//- 				li#menu-item-197.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-197
+			//- 					a.nav__link(href='https://mny.com.au/car-loan-interest-rates-in-australia/') Car Loan Interest Rates in Australia
+			//- 				li#menu-item-198.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-198
+			//- 					a.nav__link(href='https://mny.com.au/business-car-loans/') Business Car Loans
+			//- 				li#menu-item-199.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-199
+			//- 					a.nav__link(href='https://mny.com.au/chattel-mortgage/') Chattel Mortgage
+			//- 				li#menu-item-200.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-200
+			//- 					a.nav__link(href='https://mny.com.au/truck-finance-and-loans/') Truck Finance and Loans
+			//- 				li#menu-item-201.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-201
+			//- 					a.nav__link(href='https://mny.com.au/novated-leases-in-australia/') Novated Leases in Australia
+			//- 				li#menu-item-202.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-202
+			//- 					a.nav__link(href='https://mny.com.au/how-to-find-the-most-fuel-efficient-car-in-australia/') Finding the most fuel-efficient cars in Australia
+			//- 				li#menu-item-203.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-203
+			//- 					a.nav__link(href='https://mny.com.au/new-vs-used-card-in-australia/') New vs used card in Australia
+			//- 		li#menu-item-102.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-has-children.menu-item-102
+			//- 			a.nav__link(href='https://mny.com.au/home-loans-comparison/') Home Loans
+			//- 			ul.sub-menu
+			//- 				li#menu-item-205.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-205
+			//- 					a.nav__link(href='https://mny.com.au/home-loans-for-bad-credit/') Home loans for bad credit
+			//- 				li#menu-item-206.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-206
+			//- 					a.nav__link(href='https://mny.com.au/how-to-buy-a-house-in-australia/') How to Buy a House in Australia
+			//- 				li#menu-item-207.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-207
+			//- 					a.nav__link(href='https://mny.com.au/home-loans-comparison/') Home Loans Comparison
+			//- 				li#menu-item-208.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-208
+			//- 					a.nav__link(href='https://mny.com.au/fixed-rate-home-loans/') Fixed Rate Home Loans
+			//- 				li#menu-item-209.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-209
+			//- 					a.nav__link(href='https://mny.com.au/first-home-buyers/') First Home Buyers
+			//- 				li#menu-item-210.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-210
+			//- 					a.nav__link(href='https://mny.com.au/home-loans-for-doctors/') Home Loans For Doctors
+			//- 				li#menu-item-211.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-211
+			//- 					a.nav__link(href='https://mny.com.au/home-renovation-loans-in-australia/') Home Renovation Loans in Australia
+			//- 				li#menu-item-212.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-212
+			//- 					a.nav__link(href='https://mny.com.au/hidden-costs-of-buying-a-home/') Hidden Costs of Buying a Home
+			//- 		li#menu-item-17.menu-item.menu-item-type-custom.menu-item-object-custom.menu-item-home.current-menu-ancestor.current-menu-parent.menu-item-has-children.menu-item-17
+			//- 			a.nav__link(href='https://mny.com.au/#calcs') Calculators
+			//- 			ul.sub-menu
+			//- 				li#menu-item-213.menu-item.menu-item-type-post_type.menu-item-object-page.current-menu-item.page_item.page-item-144.current_page_item.menu-item-213
+			//- 					a.nav__link(href='https://mny.com.au/car-loan-calculator/' aria-current='page') Car Loan Calculator
+			//- 				li#menu-item-234.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-234
+			//- 					a.nav__link(href='https://mny.com.au/home-renovation-loans-in-australia/') Home Renovation Loans in Australia
+			//- 		li#menu-item-99.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-99
+			//- 			a.nav__link(href='https://mny.com.au/about-us/') About Us
+
+				//- ul.nav.nav-header
+				//- 	each item in links
+				//- 		li(class={'_has-child': item.child})
+				//- 			a.nav__link(href=item.link, class={'is-active': pageName === item.name})!=item.name
+				//- 			if(item.child)
+				//- 				ul.child-list
+				//- 					each child in item.child
+				//- 						li
+				//- 							a(href=child.link)!=child.name
+
+			//- .header__trigger.js-menu-trigger
+			//- 	span
+
+			//- .header__lang
+				ul
+					each data in languages
+						li
+							a(href=data.url class=data.isActive && 'is-active') #{data.lang}

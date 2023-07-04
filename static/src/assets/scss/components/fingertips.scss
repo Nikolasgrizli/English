@@ -1,0 +1,122 @@
+.fingertips{
+	&__wrapper{
+		padding: 2rem 3rem;
+		background-color: var(--color-accent);
+		border-radius: 5px;
+		@include rmin(768){
+			padding: 4rem 5rem;
+		}
+		.fingertips_v2 &{
+			background-color: var(--color-main);
+			color: var(--color-bg);
+			.g-container{
+				@include rmin(1600){
+					max-width: 180rem;
+				}
+			}
+			.btn.btn_primary{
+				background-color: var(--color-accent);
+				color: var(--color-text);
+				&:hover {
+					background-color: var(--color-accent_light);
+				}
+				@include rmin(768){
+					border-radius: 0 5px 5px 0;
+				}
+			}
+		}
+	}
+	&__title{
+		.fingertips_v2 &{
+			font-weight: 600;
+			font-size: var(--h3Size);
+			text-align: center;
+		}
+	}
+	&__form{
+		.form{
+			max-width: rem(340);
+			margin: 0 auto;
+		}
+		.btn{
+			width: 100%;
+		}
+		.fingertips_v2 &{
+			.form__line{
+				color: var(--color-text);
+			}
+			@include rmin(1024){
+				grid-column: 5 / span 6;
+				padding-top: 3rem;
+			}
+			@include rmin(768){
+				grid-column: 3 / span 10;
+				.form{
+					max-width: max-content;
+					display: flex;
+				}
+				.form__field input{
+					border-radius: 5px 0 0 5px;
+					padding: calc(1.0714285714em + 1rem) 1.4285714286em 1.0714285714em;
+				}
+				.form .form__field_active .form__label{
+					transform: translate(-0.5rem, 0.5rem) scale(.65);
+				}
+				.calc-form__field_pre:after{
+					padding-top: 1rem;
+				}
+			}
+		}
+
+	}
+	&__list{
+		@include r(768){
+			margin-bottom: 2em;
+		}
+		ul{
+			@extend %reset-list;
+			display: grid;
+			gap: .7em;
+			@include rmin(1024){
+				grid-template-columns: 1fr 1fr;
+				grid-template-rows: auto auto;
+			}
+		}
+		.fingertips_v2 &{
+			@include rmin(1024){
+				// grid-column: 3/ span 10;
+				grid-column: 4/span 8;
+			}
+			@include rIn(768,1023){
+				grid-column: 2 / span 12;
+			}
+			@include r(1023){
+				li{
+					margin-bottom: .35em;
+				}
+			}
+		}
+	}
+	.calc-form__field_pre{
+		&::after{
+		    padding: 0;
+			font-size: 1.9rem;
+			top: 0;
+			line-height: 1.2;
+			border: 1px solid transparent;
+			height: 100%;
+			padding: 0;
+			display: flex;
+			align-items: center;
+		}
+		&:has(.form__input.input-error)::after{
+			opacity: 0;
+		}
+		.form__input:focus{
+			box-shadow: inset 0 0 9px rgba(254,190,9,.7), inset 2px 0 2px rgba(254,190,9,.7);
+			&.input-error{
+				box-shadow: inset 0 0 9px rgba(var(--color-error-rgb),.7), inset 2px 0 2px rgba(var(--color-error-rgb),.7);
+			}
+		}
+	}
+}

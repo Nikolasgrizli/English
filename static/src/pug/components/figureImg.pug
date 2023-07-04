@@ -1,0 +1,22 @@
+mixin figureImg(data, isScalable = false, wrapper = 'figure')
+	-
+		var data = data || {}
+
+	//- <figureImg>
+		src:    string,
+		name:   string,
+		cls:    string, class to wrapper img(default it's figure with class 'text-center')
+		ext:    string,
+		clsImg: string,
+		w:      number,
+		h:      number,
+		figcap: string || object
+		alt:    string
+
+	+tag(wrapper)(class!= (isScalable ? 'js-scalable ' : '') + (data.cls ? data.cls : 'text-center'),data-mfp-src!= isScalable ? `${pathPrefix}img/${data.src ? data.src : 'articles'}/${data.name}` + '_big.webp' : '')&attributes(attributes)
+		+newImg(`${data.src ? data.src : 'articles'}/${data.name}`,{cls: (data.clsImg ? data.clsImg : ''), ext: (data.ext ? data.ext : 'jpg'), lazy: 1, w: (data.w ? data.w : 700), h: (data.h ? data.h : 350), alt: (data.alt ? data.alt : '')})
+		if(data.figcap)
+			if( typeof data.figcap === 'string')
+				figcaption!=data.figcap
+			else
+				figcaption(class=data.figcap.cls)!=data.figcap.text

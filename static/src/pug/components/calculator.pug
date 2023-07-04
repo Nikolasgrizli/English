@@ -1,0 +1,147 @@
+mixin calculator(data)
+	-
+		var data = data || "car";  // car || home ||
+		const carCalc = [
+			{
+				label: "Vehicle purchase price",
+				id: "price",
+				placeholder: "0",
+				dataPlaceholder: "$0",
+				maxLength: "9999999",
+				value: "30000",
+			},
+			{
+				label: "Initial deposit / Trade in",
+				id: "deposit",
+				placeholder: "0",
+				dataPlaceholder: "$0",
+				maxLength: "999999",
+				value: "0",
+			},
+			{
+				label: "Interest rate",
+				id: "rate",
+				placeholder: "0",
+				dataPlaceholder: "0%",
+				maxLength: "100",
+				value: "7.5",
+			},
+			{
+				type: "select",
+				label: "Loan term (years)",
+				id: "term",
+				options: [
+					{
+						label: '5 years',
+						val: 5
+					},
+					{
+						label: '4 years',
+						val: 4
+					},
+					{
+						label: '3 years',
+						val: 3
+					},
+					{
+						label: '2 years',
+						val: 2
+					},
+					{
+						label: '1 years',
+						val: 1
+					},
+				]
+			},
+			{
+				label: "Establishment fees",
+				id: "fees",
+				placeholder: "0",
+				dataPlaceholder: "$0",
+				maxLength: "999999",
+				value: "0",
+			},
+			{
+				type: "button",
+				id: "goNum",
+				label: "See my repayments"
+			}
+		]
+
+	aside.calculator&attributes(attributes)
+		mixin field({label,id,placeholder,maxLength,value,dataPlaceholder})
+			label.calc-form__line.calc-form__field&attributes(attributes)
+				.calc-form__label!=label
+				input.calc-form__input(id=id, type="text", inputmode="decimal", name=id, data-maxlength=maxLength, placeholder=placeholder, data-placeholder=dataPlaceholder,data-value=value)
+		mixin select({label,id,options})
+			label.calc-form__line.calc-form__select-wrapper
+				.calc-form__label!=label
+				select.calc-form__select(id=id)
+					each option in options
+						option(value=option.val)!=option.label
+
+
+		.calculator__wrapper
+			.calculator__inner
+				.calculator__col-form
+					.calc-form
+						if(data === 'car')
+							each item in carCalc
+								-
+									var cls = item.dataPlaceholder ? (item.dataPlaceholder === '$0' ? 'calc-form__field_pre' : 'calc-form__field_past') : '';
+								if(!item.type)
+									+field(item)(class!=cls)
+								else if(item.type === 'select')
+									+select(item)
+								else if(item.type === 'button')
+									button.btn.btn_primary(id=item.id)!=item.label
+
+				.calculator__col-data
+					.calc-data
+						.calc-data__tabs#repaymentTabs
+							button.cd-button(data-repayment=".25") Weekly
+							button.cd-button(data-repayment=".5") Fortnightly
+							button.cd-button.is-active(data-repayment="1") Monthly
+
+						.calc-data__numbers
+							.cd-num
+								.cd-num__label Total amount to repay
+								.cd-num__result#total
+									span.cd-num__placeholder No data
+								#totalError.cd-num__error.hidden Error! Incorrect data
+
+							.cd-num
+								.cd-num__label Your repayments
+								.cd-num__result#payments
+									span.cd-num__placeholder No data
+								#paymentError.cd-num__error.hidden Error! Incorrect data
+
+						.calc-data__line.cd-line
+							.cd-line__line#cdLine
+								span.cd-green
+								span.cd-yellow
+								span.cd-main
+							.cd-line__description
+								.cd-desc
+									.marker.cd-green
+									.text
+										.label Loan Amount:&nbsp;
+										.output#totalOutput No data
+								.cd-desc
+									.marker.cd-yellow
+									.text
+										.label Establishment Fee:&nbsp;
+										.output#totalFee No data
+								.cd-desc
+									.marker.cd-main
+									.text
+										.label Total Interest Paid:&nbsp;
+										.output#totalInterestRate No data
+
+				.calculator__col-ban
+					.calc-bann
+						h3.calc-bann__title Ready for the next step?
+						.calc-bann__description
+							p Get free loan offers. Using technology Money Matchmaker® matches you to the lowest rates you qualify for from a pool of top lenders. So you can find the one.
+						.calc-bann__btn
+							a.btn.btn_secondary(href="/go/matching-engine") Get matched

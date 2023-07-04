@@ -1,0 +1,22 @@
+mixin simpleList(data, wrapperCls,  wrapper = 'ul', animated = true)
+	-
+		var data = data || [
+			'p1', 'p2'
+		]
+
+	//- itemList:
+	//-     cls: string,
+	//-     text: string
+	//- simpleList:
+	//-     data:  Array<string || itemList>
+	//-     wrapperCls: string
+	//-     wrapper: string
+	//-     removeAnimation: boolean
+
+
+	+tag(wrapper)(class!=`${animated ? 'auto-fading-container' : ''} ${wrapperCls}` )&attributes(attributes)
+		each itemList in data
+			if(typeof itemList === 'string')
+				li!=itemList
+			else
+				li(class!= itemList.cls)!=itemList.text

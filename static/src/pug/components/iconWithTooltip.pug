@@ -1,0 +1,19 @@
+mixin iconWithTooltip(name,description = name, cls = '')
+	-
+		let dataTooltip = {};
+		const uniq = cyrb53(name,getRandomArbitrary(1,14232))
+		if(description === name){
+			dataTooltip.title = name;
+		} else {
+			dataTooltip['data-tooltip-content'] = `#tooltip_content-${uniq}`;
+		}
+	.iconWithTooltip.js-tooltipster(class= cls ? cls : '')&attributes(dataTooltip)
+		+icon(name)
+
+		if('data-tooltip-content' in dataTooltip)
+			.tooltip_templates.tooltip_templates_icon-description
+				div.p-2(id!=`tooltip_content-${uniq}`)
+					if description === name
+						| #{description}
+					else
+						block

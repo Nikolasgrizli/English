@@ -1,0 +1,44 @@
+.footer {
+	padding: 2em 0 0;
+	background-color: var(--color-bg_dark);
+	&__logo{
+		margin-bottom: 1em;
+	}
+	&__title{
+		margin-bottom: 0.5em;
+		display: block;
+	}
+	ul{
+		@extend %reset-list;
+	}
+	&__top{
+
+		display: flex;
+		flex-flow: row wrap;
+		.footer__col{
+			flex: 1 1 100%;
+			margin-bottom: 2em;
+			@include rmin(1024){
+				flex: 1 1 33.3333%;
+				max-width: 33.3333%;
+			}
+			@include rIn(768,1023){
+				flex: 1 1 50%;
+				max-width: 50%;
+
+			}
+		}
+	}
+	&__bottom{
+		padding: .5em 0;
+		background-color: var(--color-border);
+	}
+	a:not(.btn){
+		text-decoration: none;
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+
+

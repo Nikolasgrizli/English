@@ -1,0 +1,84 @@
+// Font
+$main-font: 'Manrope', sans-serif;
+$pathPrefix: '/assets/';
+$main-font-size: 10px;
+$main-font-weight: 400;
+$main-line-height: 1.89;
+
+$menuMob: 768;
+
+
+
+// Z-indexes
+$z-indexes: (
+	"footer",
+	"header",
+	"modal",
+);
+// use:
+// .header{
+// 	z-index: z('header');
+// }
+
+
+
+// Transitions
+$transition-base: 0.33s cubic-bezier(.23, 1, .32, 1);
+$transition-slow: .6s cubic-bezier(0.08, 1.00, 0.21, 1.00);
+
+
+
+
+:root {
+	//main
+	--h1Size: 6rem;
+	--h2Size: 4.8rem;
+	--h3Size: 3.6rem;
+	--h4Size: 2.8rem;
+	--h5Size: 2.1rem;
+	--h6Size: 1.8rem;
+
+
+	@media (max-width: 1023px) {
+		--h1Size: clamp(4rem, 9vw, 6rem);
+		--h2Size: clamp(3.7rem, 6.5vw, 4.8rem);
+		--h3Size: clamp(3.2rem, 6vw, 3.6rem);
+		--h4Size: clamp(2.2rem, 4.7vw, 2.8rem);
+		--h5Size: clamp(1.6rem, 4.3vw, 2.1rem);
+		--h6Size: clamp(1.6rem, 4vw, 1.8rem);
+	}
+
+	//colors
+	@include defineColorRGB(--color-text, #29262B);
+	@include defineColorRGB(--color-main, #401C5C);
+	@include defineColorRGB(--color-error, #FB5C41);
+	--color-accent: #FEBE09;
+	--color-accent_light: #FFD150;
+	--color-bg: #ffffff;
+	--color-bg_dark: #ECE8EF;
+	--color-border_light: #EBE7EE;
+	--color-border_table-head: #DAD6DE;
+	--color-border: #A59EA9;
+	--color-border_dark: #7F7783;
+
+	--table-border: #e0d9e4;
+
+	--color-main_light: #6A4B82;
+	--color-link-blue: #347FF0;
+	--color-link-green: #13B737;
+
+
+	@media print {
+		--color-text: #000000;
+		--color-bg: #ffffff;
+	}
+
+}
+
+/*system from figma*/
+:root{
+	--grey-10: var(--color-border_light);
+	--grey-30: var(--color-border);
+	--text: var(--color-text);
+
+}

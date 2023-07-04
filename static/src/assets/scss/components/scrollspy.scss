@@ -1,0 +1,38 @@
+.section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 50px;
+	color: #fff;
+
+	&-1 {
+		height: 100vh;
+		color: #123a4e;
+		background-color: #f6f0f0;
+	}
+
+	&-2 {
+		height: 80vh;
+		background-color: #a3899b;
+	}
+
+	&-3 {
+		height: 60vh;
+		background-color: #342868;
+	}
+
+	&-4 {
+		height: 80vh;
+		background-color: #d3522b;
+	}
+
+	&-5 {
+		height: 20vh;
+		background-color: #0d412b;
+	}
+
+	&-6 {
+		height: 100vh;
+		background-color: #240d20;
+	}
+}

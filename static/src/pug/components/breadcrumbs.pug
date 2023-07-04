@@ -1,0 +1,21 @@
+mixin breadcrumbs(data)
+	- var data = data || []
+	//BEGIN breadcrumbs
+	.breadcrumbs__wrapper
+		.breadcrumbs__container.container&attributes(attributes)
+			ol.breadcrumbs(itemscope itemtype="http://schema.org/BreadcrumbList")
+				li(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+					a(itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/" itemid="/")
+						span(itemprop="name") Home
+					meta(itemprop="position" content="1")
+				each item, i in data
+					li(itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem")
+						if(i === data.length - 1)
+							span(itemprop="name")!=item
+						else
+							a(itemscope, itemtype="http://schema.org/Thing", itemprop="item", href=item.href ? item.href : 'sublink.html', itemid=item.id ? item.id : 'sublink')
+								span(itemprop="name")!=item
+						meta(itemprop="position" content=i+2)
+
+
+	//END header

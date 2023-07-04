@@ -1,0 +1,63 @@
+.sidebar_form {
+	.about-form {
+		background-color: var(--color-accent);
+		padding: 2rem 4rem 3rem;
+		border-radius: 5px;
+
+		.input-field {
+			margin-bottom: 10px;
+			display: block;
+		}
+
+		&__title {
+			text-align: center;
+		}
+
+		input,
+		textarea {
+			padding: .5em 1em;
+			width: 100%;
+			border: 1px solid #EDEDED;
+			border-radius: 5px;
+			font-size: 1em;
+			min-height: 5.5rem;
+			&:focus {
+				outline: none;
+				box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+			}
+
+			&[name="cf-captcha"] {
+				padding: 0 0.5em;
+				width: 3em;
+				display: inline-block;
+			}
+
+			&[type='submit'] {
+				border: none;
+				background-color: var(--color-main);
+				min-height: 6.5rem;
+				color: #ffffff;
+				transition: background-color .23s ease;
+
+				&:hover {
+					background-color: #35A55B;
+					cursor: pointer;
+				}
+			}
+		}
+
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+	.spinner {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: none;
+	}
+
+
+}

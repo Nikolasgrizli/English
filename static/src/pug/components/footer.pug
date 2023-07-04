@@ -1,0 +1,161 @@
+mixin footer(data)
+	- data = data || {}
+	-
+		var copyText = 'Copyright ©2023 Mykola Yevsiukov'
+		var links = [
+			{
+				name: 'Information:',
+				link: 'link',
+				child: [
+					{
+						name: 'Car Loans Comparison',
+						link: 'childLink'
+					},
+					{
+						name: 'Car Loan Calculator',
+						link: 'childLink'
+					},
+					{
+						name: 'Car loans Interest Rates',
+						link: 'childLink'
+					},
+					{
+						name: 'Business Car Loans',
+						link: 'childLink'
+					},
+					{
+						name: 'Home Loans Comparison',
+						link: 'childLink'
+					},
+					{
+						name: 'Home Loan Calculator',
+						link: 'childLink'
+					},
+					{
+						name: 'Fixed Rate Home Loans',
+						link: 'childLink'
+					},
+					{
+						name: 'Mortgage Brokers',
+						link: 'childLink'
+					},
+				]
+			},
+			{
+				name: 'Guides:',
+				link: 'link',
+				child: [
+					{
+						name: 'Car Loans For Bad Credit',
+						link: 'childLink'
+					},
+					{
+						name: 'Is buying a new car worth it: new vs used cars',
+						link: 'childLink'
+					},
+					{
+						name: 'Most cost-effective and fuel-efficient car in Australia',
+						link: 'childLink'
+					},
+					{
+						name: 'The hidden costs of buying a home in Australia',
+						link: 'childLink'
+					},
+					{
+						name: 'First Home Buyers',
+						link: 'childLink'
+					},
+					{
+						name: 'How to buy a home in Australia',
+						link: 'childLink'
+					},
+					{
+						name: 'Home Loans For Doctors',
+						link: 'childLink'
+					},
+					{
+						name: 'Home loans for bad credit',
+						link: 'childLink'
+					},
+				]
+			},
+			{
+				name: 'About Us',
+				link: 'link',
+				child: [
+					{
+						name: 'About Us',
+						link: 'childLink'
+					},
+				]
+			},
+			//- {
+			//- 	super: [
+			//- 		{
+			//- 			name: 'linkName',
+			//- 			link: 'link',
+			//- 			child: [
+			//- 				{
+			//- 					name: 'childName',
+			//- 					link: 'childLink'
+			//- 				},
+			//- 				{
+			//- 					name: 'childName',
+			//- 					link: 'childLink'
+			//- 				},
+			//- 			]
+			//- 		},
+			//- 		{
+			//- 			name: 'linkName',
+			//- 			link: 'link',
+			//- 			child: [
+			//- 				{
+			//- 					name: 'childName',
+			//- 					link: 'childLink'
+			//- 				},
+			//- 				{
+			//- 					name: 'childName',
+			//- 					link: 'childLink'
+			//- 				},
+			//- 			]
+			//- 		},
+
+			//- 	]
+			//- },
+
+		]
+
+
+	.footer
+		.container
+			.footer__logo
+				a.logo-site(href="/")
+					.logo-inner
+						| English
+					//- img(src=`${pathPrefix}img/logos/logo.svg`, alt="", width="140" height="48")
+			//- .footer__top
+			//- 	each item in links
+			//- 		.footer__col
+			//- 			if(item.super)
+			//- 				each subItem, i in item.super
+			//- 					if(i>0)
+			//- 						strong.footer__title(style='--mt:5;')!=subItem.name
+			//- 					else
+			//- 						.footer__title!=subItem.name
+			//- 					if(subItem.child)
+			//- 						ul
+			//- 							each child in subItem.child
+			//- 								li
+			//- 									a(href=child.link)!=child.name
+
+			//- 			else
+			//- 				strong.footer__title!=item.name
+			//- 				if(item.child)
+			//- 					ul
+			//- 						each child in item.child
+			//- 							li
+			//- 								a(href=child.link)!=child.name
+
+		.footer__bottom
+			.container
+				.footer__copy!=copyText

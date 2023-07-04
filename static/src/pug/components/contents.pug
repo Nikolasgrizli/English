@@ -1,0 +1,15 @@
+mixin contents(data)
+	-
+		var data = data || {
+			title: 'string',
+			cls: 'section_medium-gap section_light',
+		}
+
+	section.section(class!=data.cls)&attributes(attributes)
+		.container.contents
+			.g-container
+				.grid.auto-fading-container
+					.g-col-14
+						h2!=data.title
+					.g-col-14
+						ul.contents__list#contentList

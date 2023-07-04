@@ -1,0 +1,12 @@
+mixin rangeSlider(data)
+	- data = data || ''
+
+	.range-slider
+		.range-slider__inputs
+			.range-slider__input-block
+				.range-slider__input-wrapper
+					input.range-slider__input.js-size-receiver(type="text" id="input-1" value="0" min="0" max="99999999" placeholder="From")
+			.range-slider__input-block
+				.range-slider__input-wrapper
+					input.range-slider__input.js-size-receiver(type="text" id="input-2" value="999999" min="0" max="999999" placeholder="To")
+		.steps-slider.js-range-slider

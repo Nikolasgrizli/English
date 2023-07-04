@@ -1,0 +1,21 @@
+mixin customSelect(data)
+	-
+		var data = data || {
+			multiple: true,
+			searchable: false,
+			defaultSelected: false,
+			placeholder: 'Placeholder',
+			toSteps: false, // if true, arr should be an array of two numbers
+			arr: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'],
+		}
+
+	.customSelect
+
+		select.js-custom-select(name="customSelect" data-options={
+			searchable: data.searchable,
+			placeholder: data.placeholder || 'Placeholder'
+		} multiple=data.multiple)
+
+			each item in data.arr
+				option(value=item['val'])= item['text']
+

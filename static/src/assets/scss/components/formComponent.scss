@@ -1,0 +1,321 @@
+//component setting
+//all
+
+
+$global_font-size: 1.9rem;
+
+
+//lines
+$lines_margin-bottom: em(12);
+
+//field
+$field_part-padding: .3em;
+$field_font-size: $global_font-size;
+$field_inner-padding: em(15, 14) em(20, 14);
+$field_border-radius: 5px;
+$field_border-width: 1px;
+$field_border-color: transparent;
+$field_border-color--error: #900;
+$field_bg-color: var(--color-bg);
+$field_select-opt-bg: var(--color-bg);
+
+$field_label-color: var(--color-border);
+$field_label-bg: var(--color-bg);
+$field_label-radius: 3px;
+
+$field_error-color: #900;
+$field_error-bg: var(--color-bg);
+
+
+@mixin field_autofill($color) {
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus {
+		border-color: $color;
+		-webkit-text-fill-color: $color;
+		// -webkit-box-shadow: 0 0 0px 1000px rgba(#000,.01) inset;
+		transition: background-color 5000s ease-in-out 0s;
+	}
+}
+
+@mixin field_focus() {
+
+	&:focus,
+	&:focus-within {
+		outline: 1px dashed currentColor;
+	}
+}
+
+
+
+.form {
+	font-size: $global_font-size;
+
+	&__line {
+		margin-bottom: $lines_margin-bottom;
+		display: flex;
+		width: 100%;
+
+		&>.form__line {
+			@extend .form__field;
+			margin-bottom: 0;
+		}
+	}
+
+	&__field {
+		flex: 1 1 100%;
+		max-width: 100%;
+		position: relative;
+		padding-left: $field_part-padding;
+		padding-right: $field_part-padding;
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
+
+		&.half {
+			flex: 1 1 50%;
+			max-width: 50%;
+		}
+
+		&.one-of-three {
+			flex: 1 1 33.33%;
+			max-width: 33.33%;
+		}
+
+		&.two-of-three {
+			flex: 1 1 66.666%;
+			max-width: 66.666%;
+		}
+
+		&.one-of-four {
+			flex: 1 1 25%;
+			max-width: 25%;
+		}
+
+		&.three-of-four {
+			flex: 1 1 75%;
+			max-width: 75%;
+		}
+
+		input,
+		select,
+		textarea {
+			-webkit-appearance: none;
+			padding: $field_inner-padding;
+			font-size: $field_font-size;
+			display: block;
+			width: 100%;
+			background-color: $field_bg-color;
+			border-radius: $field_border-radius;
+			border: $field_border-width solid $field_border-color;
+			line-height: 1.2;
+			transition: all $transition-base;
+
+			&.input-error {
+				border-color: $field_border-color--error;
+			}
+
+			@include placeholder {
+				color: currentColor;
+				opacity: .9;
+			}
+
+			@include field_focus();
+			@include field_autofill(var(--color-text));
+
+
+			&:invalid {
+				border-color: $field_error-bg;
+				background-color: rgba($field_error-bg, .1);
+			}
+
+			&:focus:invalid {
+				outline: none;
+			}
+
+
+		}
+		input[type=number]::-webkit-inner-spin-button,
+		input[type=number]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		textarea {
+			resize: vertical;
+		}
+
+		select {
+			padding-left: em(20, 14);
+			-webkit-tap-highlight-color: transparent;
+
+			option {
+				background-color: $field_select-opt-bg;
+
+				&[value=""][disabled] {
+					display: none;
+				}
+			}
+		}
+		// &.calc-form__field_pre:after{
+		// 	content: none;
+		// }
+	}
+
+	&__accepted {
+		margin-top: em(35);
+		display: block;
+	}
+
+	&__checkbox {
+		position: relative;
+		font-size: var(--smSize);
+		display: flex;
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		input {
+			position: absolute;
+			opacity: 0;
+			width: 0;
+			height: 0;
+
+			&:checked~.pseudo {
+				&::after {
+					opacity: 1;
+				}
+			}
+		}
+
+		.pseudo {
+			margin-top: 0.2em;
+			margin-right: 1em;
+			width: 1.1em;
+			height: 1.1em;
+			border: 1px solid;
+			position: relative;
+
+			&::after {
+				content: '';
+				width: .7em;
+				height: .7em;
+				background-color: currentColor;
+				@include abs-center();
+				transition: $transition-base;
+				opacity: 0;
+			}
+		}
+
+		.text {
+			flex: 1;
+
+			p {
+				margin-top: 0;
+			}
+
+			a {
+				color: currentColor;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+
+	}
+
+	.error {
+		position: absolute;
+		bottom: calc(100% + .2em);
+		border-radius: 10px 0 10px 0;
+		padding: 0.3em 1em .1em;
+		font-size: 75%;
+		display: inline-block;
+		width: auto;
+		line-height: 1.2;
+		color: $field_error-color;
+		background-color: $field_error-bg;
+	}
+
+	&__radio {
+		@extend .form__checkbox;
+
+		.pseudo {
+			margin-top: 0.1em;
+			border-radius: 50%;
+
+			&::after {
+				border-radius: 50%;
+				height: calc(100% - 3px);
+			}
+		}
+	}
+
+	&__submit {
+		margin-top: em(55);
+		display: block;
+		text-align: right;
+
+		button {}
+	}
+
+	.hidden {
+		display: none !important;
+	}
+}
+
+
+
+
+// new behavior like in material design
+.form {
+	.form__line {
+		margin-bottom: 1.5em;
+	}
+
+	.error {
+		left: 0;
+		background-color: transparent;
+		color: $field_border-color--error;
+		bottom: unset;
+		top: calc(100% + 2px);
+		line-height: 1;
+		padding: 0;
+		font-size: 65%;
+	}
+
+	.form__label {
+		padding: 0 4px;
+		position: absolute;
+		// z-index: 1;
+		border-radius: $field_label-radius;
+		background-color: $field_label-bg;
+		color: $field_label-color;
+		top: 0.2em;
+		left: 15px;
+		position: absolute;
+		transform: translate(0, .59em) scale(1);
+		transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+		transform-origin: top left;
+		font-size: var(--smSize);
+	}
+
+	.input-error:not(.hidden)~.form__label {
+		color: $field_border-color--error;
+	}
+
+	.form__field_active {
+		.form__label {
+			pointer-events: none;
+			transform: translate(-.59em, -.47em) scale(0.65);
+		}
+	}
+}

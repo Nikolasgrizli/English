@@ -1,0 +1,15 @@
+mixin accordion(data)
+	-
+		var data = data || [
+			{
+				q: 'question',
+				a: 'answer'
+			}
+		]
+
+	.accordion&attributes(attributes)
+		each item in data
+			.accordion__item
+				.accordion__head
+					div.accordion__head-inner!=item.q
+				.accordion__body!=item.a

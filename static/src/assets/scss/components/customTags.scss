@@ -1,0 +1,52 @@
+.custom-tags{
+	&__container{
+		display: inline-flex;
+		align-items: flex-start;
+		gap: 1.25rem;
+		flex-flow: row wrap;
+	}
+	.tag{
+		display: flex;
+		padding: 0.375em 0.5em;
+		align-items: center;
+		justify-content: space-between;
+		border-radius: 5px;
+		background-color: var(--grey-10, #EBE7EE);
+		border: none;
+		transition: background-color 0.3s ease;
+		color: var(--text, #29262B);
+		.text{
+			font-size: 0.875em;
+			color: inherit;
+			line-height: 1.5;
+			font-weight: 500;
+			display: inline-block;
+			max-width: 10em;
+			@extend %text-truncate;
+		}
+		.svg-icon{
+			width: 0.9375em;
+			height: 0.9375em;
+			stroke: var(--color-border);
+			flex-shrink: 0;
+			margin-left: 0.35em;
+			margin-right: 0.25em;
+		}
+		&_clear{
+			margin-right: 0.4em;
+			border-radius: 5px;
+			background-color: var(--grey-30, #A59EA9);
+			color: var(--white, #FFFFFF);
+			.svg-icon{
+				stroke: currentColor;
+			}
+		}
+		@media (hover:hover){
+			&:hover{
+				cursor: pointer;
+				background-color: var(--color-border_table-head);
+			}
+		}
+
+	}
+}

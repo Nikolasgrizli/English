@@ -1,0 +1,6 @@
+mixin logoWrapper(conditionLink, link)
+	if conditionLink
+		a&attributes(linkAttr(link))
+			block
+	else
+		block

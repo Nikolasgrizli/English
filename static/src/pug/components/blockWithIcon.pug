@@ -1,0 +1,14 @@
+mixin blockWithIcon(title,icon)
+	li.list-withIcon__item&attributes(attributes)
+		if(icon)
+			.list-withIcon__icon
+				+icon(icon)
+		else
+			.list-withIcon__super
+				h3.h4.bolder!= title
+			//- +newImg(`icons/${icon}`,{ext: 'svg', retina: 1, lazy: 1, w: 55, h: 55})
+		.list-withIcon__text
+			if title !== null && icon
+				.list-withIcon__item__title
+					h3.h4.bolder!= title
+			block

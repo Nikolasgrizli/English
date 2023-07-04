@@ -1,0 +1,41 @@
+mixin banner(data)
+	-
+		var data = data || {
+			//- company: object<Company>
+			//- bg: {
+			//-     name:   string,
+			//-     src:    string,
+			//-     ext:    string,
+			//-     clsImg: string,
+			//-     w:      number,
+			//-     h:      number,
+			//-     alt:    string
+			//- },
+			//- bgDecor: {
+			//-     name:   string,
+			//-     src:    string,
+			//-     ext:    string,
+			//-     clsImg: string,
+			//-     w:      number,
+			//-     h:      number,
+			//-     alt:    string
+			//- }
+		}
+
+
+	aside.bnr&attributes(attributes)
+		+newImg(`${data.bg.src ? data.bg.src : 'banners'}/${data.bg.name ? data.bg.name : 'banner-bg'}`,{cls: (data.bg.clsImg ? data.bg.clsImg : 'bnr__bg-img'), ext: (data.bg.ext ? data.bg.ext : 'svg'), lazy: 1, w: (data.bg.w ? data.bg.w : 1167), h: (data.bg.h ? data.bg.h : 250), alt: (data.bg.alt ? data.bg.alt : '')})
+		+newImg(`${data.bgDecor.src ? data.bgDecor.src : 'banners'}/${data.bgDecor.name ? data.bgDecor.name : 'banner-decor_pc'}`,{cls: (data.bgDecor.clsImg ? data.bgDecor.clsImg : 'bnr__bg-decor'), ext: (data.bgDecor.ext ? data.bgDecor.ext : 'svg'), lazy: 1, w: (data.bgDecor.w ? data.bgDecor.w : 319), h: (data.bgDecor.h ? data.bgDecor.h : 250), alt: (data.bgDecor.alt ? data.bgDecor.alt : '')})
+		.bnr__content
+			if(data.company)
+				.bnr__inner
+					h2.bnr__title!=`Save ${data.company.off}`
+					p.bnr__subtitle!=data.company.prices.bestPlan.name
+					.bnr__btn
+						a.btn.btn_secondary&attributes(linkAttr(data.company.linkSite))
+							span Claim now
+					.bnr__garantee
+						+icon('garantee')
+						span!=data.company.garantee
+			else
+				block

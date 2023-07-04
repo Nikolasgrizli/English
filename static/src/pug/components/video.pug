@@ -1,0 +1,10 @@
+mixin video(data)
+	-
+		var data = data || {
+			//- src: string,
+			//- autoplayDisabled: boolean
+		}
+
+	.box-video.js-fade-up-scroll
+		video.video.js-video-autoplay(class!={'js-video-autoplay' : !data.autoplayDisabled}, controls="controls", playsinline, muted)
+			source(src!=pathPrefix + data.src, type="video/mp4")

@@ -1,0 +1,208 @@
+include ../utils/mixins
+include ../utils/includes
+
+//- global variables
+-
+	var pathPrefix = '/assets/';
+	var description = 'Description';
+	var pageClass = '';
+	var pageName = '';
+	var $LOCALE = 'en';
+	var title = 'ProjectName';
+	var headerVisible = true;
+	var footerVisible = true;
+
+
+//- data
+-
+	let bannerTexts = [
+		//- {
+		//- 	text: 'Compare loans from dozens of lenders to find the best deal'
+		//- },
+		//- {
+		//- 	text: 'Search without hurting your credit score and see the results for free'
+		//- },
+		//- {
+		//- 	text: 'Get the cheapest interest rates and lowest loan costs delivered directly to you'
+		//- },
+		//- {
+		//- 	text: 'Follow the quick and easy process that brings you the best loans in less than five minutes'
+		//- },
+		{
+			text: 'Compare novated lease pricing across loads of car options'
+		},
+		{
+			text: 'Get expert advice on how a novated lease works'
+		},
+		{
+			text: 'Get a quote to see how much money you will save on tax'
+		},
+		{
+			text: '100% online, hassle-free process'
+		},
+	]
+
+-
+	var defaultTimelineData = {
+		type: 'num',
+		title: 'h3',
+		titleClass: 'h4',
+		items: [
+		]
+	}
+
+
+
+
+//- helpers functions
+-
+	const _data = function ($key) {
+		return require(`../../../../data/${$key}.json`)
+	};
+
+//- -
+//- 	const COMPANIES = _data('bvc-data_local','companies');
+
+//- -
+//- 	const getCountryCode = function (country) {
+//- 		const countries = require(`../../../../data/countries_and_codes.json`);
+//- 		const selectedCountry = countries.filter(n => country.indexOf(n.name) != -1);
+
+//- 		if(selectedCountry.length > 0){
+//- 			return selectedCountry[0].code.toLowerCase();
+//- 		} else {
+//- 			return 'ua';
+//- 		}
+//- 	}
+
+//- -
+//- 	const getIconDescription = function (iconName) {
+//- 		const iconsDictionary = require(`../../../../data/dictionary-icons.json`);
+//- 		const selectedIcon = iconsDictionary.filter(n => n.name === iconName);
+
+//- 		if(selectedIcon.length > 0){
+//- 			return selectedIcon[0].description;
+//- 		} else {
+//- 			return 'Description does not exist';
+//- 		}
+//- 	}
+
+//- -
+//- 	const getCompany = function(name){
+//- 		const company = COMPANIES.filter(n => name.indexOf(n.name) != -1);
+//- 		return company[0];
+//- 	}
+
+-
+	const getCorrectLinkSite = function(link) {
+		return (link.includes('http') || link.includes('#') && !link.includes('http')) ? link : '##' + link;
+	}
+
+-
+	const linkAttr = function(link) {
+		const fixedLink = getCorrectLinkSite(link);
+		if(fixedLink.includes('/go/') || fixedLink.includes('#') && !link.includes('http')){
+			return {"href": fixedLink, "rel": "nofollow", "target":"_blank"}
+		} else if (fixedLink.includes('/bestvpncanada.com') && !fixedLink.includes('/go/')){
+			return {"href": fixedLink}
+		} else {
+			return {"href": fixedLink, "rel":"nofollow noopener", "target":"_blank"}
+		}
+	}
+
+//- -
+//- 	const replacePrice = function(price){
+//- 		return price.replace(/(\$\d+(?:\.\d+)?)/g, `<span class="big">$1</span>`)
+//- 	}
+
+-
+	const cyrb53 = function(str, seed = 0) {
+		let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+		for (let i = 0, ch; i < str.length; i++) {
+			ch = str.charCodeAt(i);
+			h1 = Math.imul(h1 ^ ch, 2654435761);
+			h2 = Math.imul(h2 ^ ch, 1597334677);
+		}
+		h1 = Math.imul(h1 ^ (h1>>>16), 2246822507) ^ Math.imul(h2 ^ (h2>>>13), 3266489909);
+		h2 = Math.imul(h2 ^ (h2>>>16), 2246822507) ^ Math.imul(h1 ^ (h1>>>13), 3266489909);
+		return 4294967296 * (2097151 & h2) + (h1>>>0);
+	};
+-
+	const getRandomArbitrary = function(min, max){
+		return Math.floor(Math.random() * (max - min) + min);
+	}
+//- -
+//-     var isImg = function(e) {
+//-         if(!e.includes('!!img')) return false;
+//-         var data = e.replace(/!!img\|\|/g, '');
+//-         var dataPair = data.split('||');
+//-         var dataObj = {};
+//-         dataPair.map(e=>{
+//-             var tup = e.split(':');
+//-             dataObj[tup[0]] = tup[1];
+//-         })
+//-         return dataObj;
+
+//-     }
+//- -
+//-     var isList = function(e) {
+//-         if(!e.includes('!!list')) return false;
+//-         var data = e.replace(/!!list\|\|/g, '');
+//-         var dataPair = data.split('||');
+//-         var dataObj = {};
+//-         dataPair.map(e=>{
+//-             var tup = e.split(':');
+//-             dataObj[tup[0]] = tup[1];
+//-         })
+//-         return dataObj;
+
+//-     }
+
+
+
+//- local variables
+block variables
+
+doctype html
+html(lang= $LOCALE)
+	head
+		meta(charset='utf-8')
+		meta(http-equiv="x-ua-compatible" content="ie=edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(content="telephone=no" name="format-detection")
+		meta(name="HandheldFriendly" content="true")
+		+meta()
+		+favicon()
+
+		link(rel='stylesheet' href=pathPrefix + 'css/app.css')
+
+		block head
+
+	body.body
+		.layout(class=pageClass)
+			.layout__header
+				if headerVisible
+					+header()
+				block header
+			.layout__main
+				//- +dayNight()
+				main
+					block content
+				+toTopBtn()
+			.layout__footer
+				if footerVisible
+					+footer()
+				block footer
+
+		block modals
+
+		+lazyImgLoader()
+		script(src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous")
+		script(
+			src="https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js"
+		)
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js")
+
+		script(src=pathPrefix + 'js/vendors.js')
+		script(src=pathPrefix + 'js/app.js')
+		block script

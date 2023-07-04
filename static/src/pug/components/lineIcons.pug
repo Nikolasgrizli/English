@@ -1,0 +1,34 @@
+mixin lineIcons(data)
+	-
+		var data = data || [
+			{
+				name: 'Community',
+				icon: 'community',
+				link: 'pia',
+				isActive: true
+			}
+		]
+	//- <lineIcon>:
+	//-     name: string,
+	//-     icon: string,
+	//-     link: <link>,
+	//-     isActive: boolean
+
+	mixin lineIcon(icon,name)
+		.li-item__icon
+			img(src!=`${pathPrefix}img/icons/${icon}.svg`, alt)
+		.li-item__name
+			strong!=name
+
+	.g-container
+		ul.line-icons.grid
+			each item in data
+				li.line-icons__item.li-item(class!={'li-item_active' : item.isActive})
+					if(item.link)
+						a.li-item__link.clear-link(href!=getCorrectLinkSite(item.link))&attributes(attributes)
+							+lineIcon(item.icon,item.name)
+					else
+						.li-item__link
+							+lineIcon(item.icon,item.name)
+
+

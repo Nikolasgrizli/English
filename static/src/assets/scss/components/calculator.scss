@@ -1,0 +1,359 @@
+.calculator{
+	&__wrapper{
+
+	}
+	&__inner{
+		display: flex;
+		@include r(1023){
+			flex-wrap: wrap;
+		}
+		& > [class*=__col]{
+			overflow: hidden;
+			flex: 1 1 100%;
+			@include rIn(768,1023){
+				&:not(.calculator__col-ban){
+					flex: 1 1 50%;
+				}
+				&.calculator__col-ban{
+					flex: 1 1 100%;
+				}
+			}
+			@include rmin(1024){
+				flex: 1 1 33%;
+			}
+		}
+	}
+	&__col-form{
+		border-radius: 5px;
+		@include rmin(768){
+			border-radius: 5px 0 0 5px;
+		}
+	}
+	&__col-data{
+		border-radius: 5px;
+		@include rmin(768){
+			border-radius: 0 5px 5px 0;
+		}
+	}
+	&__col-ban{
+
+	}
+}
+
+/*form*/
+.calc-form{
+	padding: 5rem;
+	background-color: var(--color-border);
+	user-select: none;
+	@include r(767){
+		padding: 4rem;
+		@include r(435){
+			padding: 3rem;
+		}
+	}
+	&__line{
+		font-size: 2rem;
+		position: relative;
+		width: 100%;
+		display: block;
+		min-height: 2.5em;
+		background-color: var(--color-bg);
+		margin-bottom: 1.5em;
+		border-radius: 5px;
+		&::before{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			border: 2px solid transparent;
+			border-radius: 5px;
+			transform: scale(1, 1);
+			transition: .23s;
+		}
+		&.is-error{
+			&::before{
+				border-color: crimson;
+				transform: scale(.99, .95);
+			}
+		}
+		&:focus-within{
+			&::before{
+				border-color: var(--color-border_table-head);
+				transform: scale(.99, .95);
+			}
+		}
+	}
+
+	&__field{
+		display: flex;
+
+		// &_helper{
+		// 	padding-left: 0.8em !important;
+		// 	padding-right: 0 !important;
+		// 	width: 2.5ch !important;
+		// 	pointer-events: none !important;
+		// }
+		&_pre{
+			&::after{
+				content: '$';
+				position: absolute;
+				top: 1.96rem;
+				left: 1.4rem;
+				// font-size: 1.9rem;
+				// top: 2.7rem;
+				font-size: 1.8rem;
+				top: 2.8rem;
+				line-height: 1;
+			}
+			.calc-form__input{
+				padding-left: 2.6rem;
+			}
+		}
+		&_past{
+			&::after{
+				content: '%';
+				position: absolute;
+				top: 2rem;
+				left: calc(1.7rem + var(--percentSize,10px));
+				font-size: 1.9rem;
+			}
+			.copy-percent{
+				font-size: 1.9rem;
+				position: absolute;
+				pointer-events: none;
+				opacity: 0;
+				top: 0;
+				right: 0;
+			}
+		}
+	}
+	&__select-wrapper{
+		&::after{
+			--size: 7px;
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 0;
+			border: var(--size) solid transparent;
+			top: calc(50% - calc(var(--size) * .5));
+			right: 1.5rem;
+			border-top-color: var(--color-border);
+			border-radius: 4px;
+			pointer-events: none;
+		}
+		// &:focus-within{
+		// 	&::after{
+		// 		transform: scaleY(-1) translateY(calc(var(--size) * .7));
+		// 	}
+		// }
+	}
+	&__label{
+		position: absolute;
+		pointer-events: none;
+		line-height: 1;
+		font-weight: 100;
+		font-size: rem(14,10);
+		left: 1.5rem;
+		top: 0.7rem;
+		color: var(--color-border);
+	}
+	&__input,
+	&__select{
+		appearance: none;
+		border: none;
+		margin-top: 2.4rem;
+		margin-bottom: 0.6rem;
+		line-height: 1;
+		padding: 0 1.5rem;
+		font-size: rem(19,10);
+		width: 100%;
+		&:focus{
+			outline: none !important;
+		}
+	}
+	&__select{
+		margin-top: 0.3rem;
+		padding-top: 2rem;
+		background-color: transparent;
+	}
+	.btn{
+		width: 100%;
+		min-height: 5.6rem;
+	}
+}
+/*end form*/
+
+// data from form
+.calc-data{
+	padding: 3.5rem;
+	height: 100%;
+	background-color: var(--color-bg_dark);
+	display: flex;
+    flex-flow: column;
+	button{
+		@extend %reset-btn;
+	}
+	&__tabs{
+		width: 100%;
+		display: flex;
+		overflow: hidden;
+		font-size: 1.6rem;
+		border: 1px solid;
+		border-radius: 5px;
+		color: var(--color-border);
+	}
+	.cd-button{
+		padding: 1em .5em;
+		flex: 1 1 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		transition: .23s;
+		&:not(:last-child){
+			border-right: 1px solid var(--color-border);
+		}
+		&.is-active{
+			color: var(--color-bg);
+			background-color: var(--color-main);
+		}
+		&:not(.is-active){
+			&:hover{
+				color: var(--color-bg);
+				background-color: var(--color-main_light);
+			}
+		}
+		&.inactive{
+			pointer-events: none;
+		}
+	}
+	&__numbers{
+		margin-top: 3rem;
+		font-size: 2rem;
+		@include r(767){
+			margin-bottom: 3rem;
+		}
+	}
+	.cd-num{
+		&__label{
+			font-weight: 600;
+			font-size: 1em;
+			@include rIn(1024,1599){
+				font-size: .8em;
+			}
+		}
+		&__result{
+			font-weight: 500;
+			font-size: 3em;
+			min-height: 1em;
+			line-height: 1;
+			@include rIn(1024,1599){
+				font-size: 2.4em;
+			}
+		}
+		&__placeholder{
+			color: var(--color-border_dark);
+			font-size: .3em;
+			position: relative;
+			transform: translateY(-2em);
+			display: inline-block;
+		}
+		&:last-child{
+			margin-top: 1rem;
+		}
+		&__error{
+			border: 2px solid var(--color-error);
+			border-radius: 5px;
+			background-color: rgba(var(--color-error-rgb),.1);
+			display: inline-flex;
+			font-size: 1.7rem;
+			padding: 0.5em 1em;
+			color: var(--color-error);
+		}
+	}
+	&__line{
+		margin-top: auto;
+	}
+	.cd-line__line{
+		margin-bottom: 2rem;
+		display: flex;
+		height: 1.8rem;
+		overflow: hidden;
+		border-radius: 2px;
+		span{
+			height: 100%;
+			&:nth-child(1){
+				flex: 0 0 var(--met-green,0)
+			}
+			&:nth-child(2){
+				flex: 0 0 var(--met-yellow,0)
+			}
+			&:nth-child(3){
+				flex: 0 0 var(--met-main,0)
+			}
+		}
+
+	}
+	.cd-desc{
+		display: flex;
+		align-items: flex-start;
+		font-size: 1.5rem;
+		line-height: 1.5;
+		color: var(--color-border_dark);
+		&:not(:last-child){
+			margin-bottom: 1em;
+		}
+		.marker{
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 2px;
+		}
+		.text{
+			margin-left: 0.5em;
+			display: flex;
+			flex-flow: row wrap;
+		}
+	}
+	.cd-green{
+		background-color: #13B737;
+	}
+	.cd-yellow{
+		background-color: #FEBE09;
+	}
+	.cd-main{
+		background-color: #401C5C;
+	}
+}
+// end data from form
+
+
+.calc-bann{
+	padding: 2.5rem 3.2rem 3rem;
+	height: 100%;
+	border-radius: 5px;
+	background: var(--color-main) url(#{$pathPrefix}img/banners/calc-bg.png) 0 bottom no-repeat;
+	background-size: 100% auto;
+	color: var(--color-bg);
+	@include rmin(1024){
+		margin-left: 3rem;
+	}
+	@include r(1023){
+		margin-top: 3rem;
+	}
+	@include r(767){
+		background-size: 50% auto;
+    	background-position: bottom right;
+	}
+	&__description{
+		font-size: 1.7rem;
+		font-weight: 300;
+	}
+	.btn{
+		font-size: 1.7rem;
+		min-width: 12em;
+		min-height: 3.4em;
+	}
+}

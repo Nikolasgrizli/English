@@ -1,0 +1,52 @@
+mixin fingertipsBlock(data)
+	-
+		var data = data || {
+			title: "string",
+			defaultValue: 0,
+			list: {
+				globalType: "check",
+				items: [
+					{
+						type: 'check ||',
+						text: 'string'
+					}
+				]
+			}
+
+
+		};
+		var formField = {
+			name: 'amount',
+			id: 'amount',
+			type: 'number',
+			defaultValue: data.defaultValue,
+			label: 'Enter loan amount',
+			required: true,
+			validate: 'no-empty'
+		}
+
+	.fingertips&attributes(attributes)
+		.fingertips__wrapper
+			h2.fingertips__title!=data.title
+			.g-container
+				.grid.fingertips__inner
+					.g-col-14.g-col-md-9.fingertips__list
+						if data.list
+							ul
+								each line in data.list.items
+									-
+										let cls = {'elem-icon_good': data.list.globalType === "check" || line.type === "check"}
+									li
+										.elem-icon(class!=cls)!=line.text
+
+					.g-col-14.g-col-md-5.fingertips__form
+
+						form.form.form_js-validate.js-pseudo-form(novalidate action="/link.html")
+							+formField(formField)
+							//- .form__line
+							//- 	.form__field
+							//- 		label.form__label(for="ld-form-title") Enter amount
+							//- 		input#ld-form-title.form__input(type="number", name="title")
+							//- 		.error.hidden Field must be filled
+							.form__line
+								button.btn.btn_primary(type="submit") Get my offer

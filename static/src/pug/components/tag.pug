@@ -1,0 +1,27 @@
+mixin tag(tag)
+	if tag === 'a'
+		a()&attributes(attributes): block
+	else if tag === 'ul'
+		ul()&attributes(attributes): block
+	else if tag === 'ol'
+		ol()&attributes(attributes): block
+	else if tag === 'li'
+		li()&attributes(attributes): block
+	else if tag === 'strong'
+		strong()&attributes(attributes): block
+	else if tag === 'span'
+		span()&attributes(attributes): block
+	else if tag === 'h1'
+		h1()&attributes(attributes): block
+	else if tag === 'h2'
+		h2()&attributes(attributes): block
+	else if tag === 'h3'
+		h3()&attributes(attributes): block
+	else if tag === 'h4'
+		h4()&attributes(attributes): block
+	else if tag === 'h5'
+		h5()&attributes(attributes): block
+	else if tag === 'figure'
+		figure()&attributes(attributes): block
+	else
+		div()&attributes(attributes): block

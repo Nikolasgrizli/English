@@ -1,0 +1,42 @@
+mixin icon(name, options)
+	- options = options || {};
+	svg(
+		class = options.cls || 'svg-icon'
+		width = options.w || null
+		height = options.h || null
+	)
+		use(xlink:href="#" + name)
+mixin img(className, name, ext, alt)
+	img(class=`${className}` srcset=`${pathPrefix}img/${name}.${ext}, ${pathPrefix}img/${name}@2x.${ext} 1.5x, ${pathPrefix}img/${name}@2x.${ext} 2x`, src=`${pathPrefix}img/${name}.${ext}`, alt=`${alt}`)
+
+//- +webp('path/name', 'class', 'alt')
+
+mixin newImg(name, options)
+	- options = options || {};
+	- extension = options.ext || 'png';
+	- alternative = options.alt || '';
+	- oWidth = options.w || '300';
+	- oHeight = options.h || '300';
+
+	if extension === 'svg'
+		picture
+			img(class!=(options.cls !== '') ? options.cls : '', src=`${pathPrefix}img/${name}.${extension}`, data-src=`${pathPrefix}img/${name}.${extension}`, alt!=alternative, draggable="false", width!=oWidth, height!=oHeight)
+	else
+		picture
+			source(type="image/webp" srcset=`${pathPrefix}img/${name}.webp`)
+			if options.retina
+				source(type=`image/${extension}` srcset=`${pathPrefix}img/${name}@2x.${extension} 2x`)
+				source(type="image/webp" srcset=`${pathPrefix}img/${name}@2x.webp 2x`)
+
+			img(
+				class!=options.cls ? options.cls : '',
+				src=`${pathPrefix}img/${name}.${extension}`,
+				data-src=`${pathPrefix}img/${name}.${extension}`,
+				alt!=alternative,
+				loading!=options.lazy ? 'lazy' : 'eager',
+				draggable="false",
+				width!=oWidth,
+				height!=oHeight,
+				)
+
+//- +newImg('intro/main-intro_logo',{cls:'intro__logo', ext: 'png', retina: 1, lazy: 1, w: 870, h: 490})

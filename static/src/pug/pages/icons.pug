@@ -1,0 +1,284 @@
+extends ../layout/main
+
+block variables
+	- title = 'Icons<small>(click to copy name)</small>';
+	- pageClass = 'article-page';
+
+
+block script
+	link(href='https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css' rel='stylesheet')
+	script(src='https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')
+	script.
+		function copyToClipboard(elem) {
+			// create hidden text element, if it doesn't already exist
+			var targetCopyText = elem.querySelector('.js-name');
+			var targetId = "_hiddenCopyText_";
+			var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+			var origSelectionStart, origSelectionEnd;
+			if(!!targetCopyText){
+				if (isInput) {
+					// can just use the original source element for the selection and copy
+					target = elem;
+					origSelectionStart = elem.selectionStart;
+					origSelectionEnd = elem.selectionEnd;
+				} else {
+					// must use a temporary form element for the selection and copy
+					target = document.getElementById(targetId);
+					if (!target) {
+						var target = document.createElement("textarea");
+						target.style.position = "absolute";
+						target.style.left = "-9999px";
+						target.style.top = "0";
+						target.id = targetId;
+						document.body.appendChild(target);
+					}
+					target.textContent = targetCopyText.textContent;
+				}
+				// select the content
+				var currentFocus = document.activeElement;
+				target.focus();
+				target.setSelectionRange(0, target.value.length);
+
+				// copy the selection
+				var succeed;
+				try {
+					succeed = document.execCommand("copy");
+					showInfo(infoSuccess);
+				} catch (e) {
+					succeed = false;
+					showInfo(infoError);
+				}
+				console.log(succeed);
+				// restore original focus
+				if (currentFocus && typeof currentFocus.focus === "function") {
+					currentFocus.focus();
+				}
+
+				if (isInput) {
+					// restore prior selection
+					elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+				} else {
+					// clear temporary content
+					target.textContent = "";
+				}
+				return succeed;
+			}
+		}
+
+		let     isAnimating = false;
+
+
+		function showInfo(elem){
+			if(!isAnimating){
+				isAnimating = true;
+				elem.classList.add('start-animation');
+				elem.classList.remove('hidden');
+				setTimeout(() => {
+					elem.classList.add('is-animating');
+				}, 200);
+
+				setTimeout(() => {
+					elem.classList.remove('is-animating');
+					elem.classList.remove('start-animation');
+					setTimeout(() => {
+						elem.classList.add('hidden');
+					}, 500);
+					isAnimating = false;
+				}, 3000);
+			}
+		}
+
+
+
+		(copyLink = () => {
+			const links = document.querySelectorAll('.js-copy');
+			if(!!links){
+				for (let i = 0; i < links.length; i++) {
+					const link = links[i];
+					link.style.setProperty('--anim-delay', -(i%5)*75 + 'ms' );
+					let status = false;
+					link.addEventListener('click', function(e) {
+
+						if(!status){
+							status = true;
+							// linkCopyBtn.classList.add('is-saved');
+							copyToClipboard(link);
+							setTimeout(() => {
+								// linkCopyBtn.classList.remove('is-saved');
+								status = false;
+							}, 1000);
+
+						}
+					})
+				}
+			}
+
+		})();
+
+		const   iconFiltersBtns = document.getElementById('--serviceFilterBtns'),
+		iconsWrapper = document.getElementById('--serviceIcons'),
+		icons = iconsWrapper.querySelectorAll('.-service-icons');
+
+
+		function filtering(){
+			const activeBtn = iconFiltersBtns.querySelectorAll('.js-filter-icons.active');
+			let activeParams = [...activeBtn].map(e => e.getAttribute('data-filter'));
+			// console.log(activeParams);
+
+
+			[...icons].forEach(icon => {
+				let innerAttr = icon.getAttribute('data-sorting');
+				let arrofAttr = JSON.parse(innerAttr);
+
+				let iconActive = 0;
+				arrofAttr.forEach(attr => {
+					iconActive += activeParams.includes(attr);
+				});
+				if(iconActive > 0){
+					icon.classList.add('active')
+				} else {
+					icon.classList.remove('active')
+				}
+			});
+		}
+
+		if(!!iconFiltersBtns && !!iconsWrapper){
+			filtering()
+
+			const btns = iconFiltersBtns.querySelectorAll('.js-filter-icons');
+			[...btns].map(e => {
+				e.addEventListener('click', ev => {
+					if(ev.target.classList.contains('js-filter-icons')){
+						ev.target.classList.toggle('active');
+						filtering();
+						return false;
+					}
+				});
+			})
+		}
+
+
+		$(document).ready(function() {
+			$('.js-example-basic-single').select2({
+				placeholder: 'Select an option'
+			});
+			$('.js-example-basic-single').on('select2:select', e => {
+				console.log(e.target.value)
+				let inres = $('.js-filter-icons').filter((i,el) => {
+					//- console.log($(el).attr('data-filter'))
+					return $(el).attr('data-filter') == e.target.value;
+				})
+				inres.addClass('active')
+				filtering()
+			})
+
+			$('.js-clear-filter').click(function(){
+				$('.js-filter-icons').removeClass('active')
+				filtering()
+			})
+
+			let ic = document.getElementById('__SVG_SPRITE_NODE__').getElementsByTagName('symbol');
+			[...ic].forEach( i => {
+				let fill = '';
+				[...i.children].forEach( (p,indx) =>{
+					if(p.hasAttribute('fill')){
+						if(p.getAttribute('fill') !== 'white'){
+
+							if(indx === 0){
+								fill = p.getAttribute('fill')
+							} else {
+								if(p.getAttribute('fill') == fill){
+									p.setAttribute('fill','#febe09')
+								} else {
+									p.setAttribute('fill','red')
+								}
+							}
+						} else {
+							p.setAttribute('fill','gray')
+							fill = p.getAttribute('gray')
+						}
+					}
+				})
+			})
+
+
+		});
+
+block content
+	-
+		let icons = require(`../../../../data/iconsList.json`);
+		let sortingParams = new Set();
+
+		icons.map( e =>{
+			e.sortingParams.map(attr => {
+				sortingParams.add(attr)
+			})
+
+		});
+
+		let sprite = require(`../../../../data/spritesList.json`);
+
+
+
+
+	.container.auto-fading-container.link-effect-container
+		h1.theme-switcher-gap!=title
+		.g-container(style="--mb:10")
+			#--servicesSearch
+				select.js-example-basic-single(name='state')
+					option(value="" disabled selected)
+					each item in [...sortingParams]
+						option(value=item)!=item
+				button.btn.btn_primary-empty.js-clear-filter.active: span Clear
+
+		.g-container(style="--mb:10")
+			#--serviceFilterBtns
+				button.btn.btn_primary-empty.js-filter-icons(data-filter='all'): span Show all
+				each item in [...sortingParams]
+					button.btn.btn_empty.js-filter-icons(data-filter!=item): span!=item
+
+
+		.g-container
+			.grid#--serviceIcons
+				each item in icons
+					button.-service-icons.g-col-10.g-col-md-5.g-col-md-4.g-col-lg-2.js-copy(data-sorting!=[...item.sortingParams,'all'])
+						.hidden.js-name!=item.name
+						.img-wrap
+							img.box-img_1(src=`${pathPrefix}img/icons/${item.name}.svg`, alt="", width="60" height="60")
+						.text-wrap
+							.text
+								span!=item.name
+								span!=item.name
+								span!=item.name
+								span!=item.name
+
+
+
+		h1.theme-switcher-gap(style="--mе:20;") Icons from iconSprite
+		.g-container(style="--mb:20;")
+			.grid#--serviceSpriteIcons
+				each item in sprite
+					button.-service-icons.g-col-10.g-col-md-5.g-col-md-4.g-col-lg-2.js-copy.active
+						.hidden.js-name!=item
+
+						.img-wrap(style!=item.includes('arrow') ? "stroke: var(--color-text);" : '')
+							+icon(item)
+						.text-wrap
+							.text
+								span!=item
+								span!=item
+								span!=item
+								span!=item
+
+
+
+	#--serviceInfo
+		.hidden.info-tool.info-tool_success#infoSuccess
+			p Название сохранено
+		.hidden.info-tool.info-tool_error#infoError
+			p Что-то пошло не так, попробуйте ещё раз!
+
+
+
+
+

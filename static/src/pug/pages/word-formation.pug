@@ -1,0 +1,1213 @@
+extends ../layout/main
+
+block variables
+	- title = 'Fuel-efficient cars table';
+	- pageClass = 'article-page';
+
+
+
+
+block content
+
+	section.section.section_big-gap.section_white
+		.container.container-word
+			h1 Word formation
+
+			.from-to
+				-
+					var cs1 = {
+						searchable: false,
+						defaultSelected: 0,
+						toSteps: false,
+						multiple: false,
+						arr: [
+							{
+								"val" : "noun",
+								"text": 'Noun(Существительное)',
+							},
+							{
+								"val" : "verb",
+								"text": 'Verb(Глагол)',
+							},
+							{
+								"val" : "adjective",
+								"text": 'Adjective(Прилагательное)',
+							},
+
+						]
+					}
+				.from
+					+customSelect(cs1)
+
+				.between
+					button.between-btn.js-between-btn.between-btn--to(type="button")
+						+icon('sort-top')
+						+icon('sort-bottom')
+
+				.to
+					-
+						cs1.arr.push({
+							"val" : "adverb",
+							"text": 'Adverb(Наречие)',
+						})
+					+customSelect(cs1)
+
+
+			.review-table.js-wordFormation
+				.review-table__container
+					table.review-table__root
+						thead.review-table__thead
+							tr.review-table__head-row.review-table__head-row--first
+								th(colspan="2") Noun(Существительное)
+								th(colspan="2") Verb(Глагол)
+								th(colspan="2") Adjective(Прилагательное)
+								th Adverb(Наречие)
+							tr.review-table__head-row.review-table__head-row--second
+								th: span Prefixes
+								th: span Suffixes
+								th: span Prefixes
+								th: span Suffixes
+								th: span Prefixes
+								th: span Suffixes
+								th: span Suffixes
+
+						tbody.review-table__tbody
+							//first row
+							tr.review-table__body-row
+								td(data-type="noun-noun")
+									strong mis-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark mis-]] — что-то неверное или ошибочное
+										table
+											tr
+												th fortune
+												td #[i счастье, удача]
+												th #[mark mis]fortune
+												td #[i несчастье, беда]
+											tr
+												th chance
+												td #[i шанс, возможность]
+												th #[mark mis]chance
+												td #[i неудача, невезение]
+
+								td(data-type="noun-noun")
+									strong -ship
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ship]] — указывает на состояние, положение, должность, навыки, качество, характер
+										table
+											tr
+												th friend
+												td #[i друг]
+												th friend#[mark ship]
+												td #[i дружба]
+											tr
+												th scholar
+												td #[i ученый]
+												th scholar#[mark ship]
+												td #[i стипендия]
+											tr
+												th owner
+												td #[i владелец]
+												th owner#[mark ship]
+												td #[i владение]
+											tr
+												th lord
+												td #[i господин]
+												th lord#[mark ship]
+												td #[i господство, власть]
+								td(data-type="verb-verb")
+									strong mis-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark mis-]] — имеет значение «неправильно, неверно»
+										table
+											tr
+												th understand
+												td #[i понимать]
+												th #[mark mis]understand
+												td #[i неправильно понимать]
+											tr
+												th spell
+												td #[i произносить]
+												th #[mark mis]spell
+												td #[i произносить неправильно]
+											tr
+												th behave
+												td #[i вести себя]
+												th #[mark mis]behave
+												td #[i вести себя неправильно]
+											tr
+												th judge
+												td #[i судить]
+												th #[mark mis]judge
+												td #[i судить неправильно]
+								td(data-type="noun-verb")
+									strong -ise/-ize
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ise/-ize]] — имеют значение «делать», «готовить», «заниматься», «становиться»(Суффиксы -ise и -ize отличаются тем, что -ise чаще используется в британском варианте английского языка, а -ize — только в американском английском)
+										table
+											tr
+												th ad, advertisement
+												td #[i реклама]
+												th advert#[mark ise]
+												td #[i рекламировать]
+											tr
+												th critic
+												td #[i критик]
+												th critic#[mark ize]
+												td #[i критиковать]
+											tr
+												th terror
+												td #[i ужас]
+												th terror#[mark ize]
+												td #[i терроризировать]
+											tr
+												th modern
+												td #[i современный]
+												th modern#[mark ize]
+												td #[i модернизировать]
+											tr
+												th colonist
+												td #[i колонист]
+												th colon#[mark ize]
+												td #[i колонизировать]
+
+								td(data-type="adjective-adjective")
+									strong inter-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark inter-]] — «среди чего-то», «между определенными группами», указывает на связь между определенными группами, понятиями
+										table
+											tr
+												th national
+												td #[i национальный]
+												th #[mark inter]national
+												td #[i международный]
+											tr
+												th state
+												td #[i государственный]
+												th #[mark inter]state
+												td #[i межгосударственный]
+											tr
+												th racial
+												td #[i расовый]
+												th #[mark inter]racial
+												td #[i межрасовый]
+											tr
+												th religious
+												td #[i религиозный]
+												th #[mark inter]religious
+												td #[i межрелигиозный]
+
+								td(data-type="noun-adjective")
+									strong -al
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -al]] — выражает отношение к чему-то, качество
+										table
+											tr
+												th person
+												td #[i человек]
+												th person#[mark al]
+												td #[i личный]
+											tr
+												th nature
+												td #[i природа]
+												th natur#[mark al]
+												td #[i естественный]
+											tr
+												th history
+												td #[i история]
+												th historic#[mark al]
+												td #[i исторический]
+											tr
+												th centre (center)
+												td #[i центр]
+												th centr#[mark al]
+												td #[i центральный]
+
+								td(data-type="adjective-adverb")
+									strong -ly/-ily
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ly/-ily]] — указывают на способ, образ действия
+										table
+											tr
+												th angry
+												td #[i злой]
+												th angr#[mark ily]
+												td #[i злобно]
+											tr
+												th happy
+												td #[i счастливый]
+												th happ#[mark ily]
+												td #[i счастливо]
+											tr
+												th friend
+												td #[i друг]
+												th friend#[mark ly]
+												td #[i дружески]
+											tr
+												th brother
+												td #[i брат]
+												th brother#[mark ly]
+												td #[i братски]
+											tr
+												th awfully
+												td #[i ужасно]
+												th awful#[mark ly]
+												td #[i ужасный]
+
+							//second row
+							tr.review-table__body-row
+								td
+								td(data-type="verb-noun")
+									strong -er/-or
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -er/-or]] — исполнитель действия, профессия или инструмент
+										table
+											tr
+												th train
+												td #[i тренировать]
+												th train#[mark er]
+												td #[i тренер]
+											tr
+												th teach
+												td #[i учить]
+												th teach#[mark er]
+												td #[i учитель]
+											tr
+												th write
+												td #[i писать]
+												th writ#[mark er]
+												td #[i писатель]
+											tr
+												th govern
+												td #[i управлять]
+												th govern#[mark or]
+												td #[i правитель]
+
+								td(data-type="verb-verb")
+									strong re-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark re-]] — повторение действия, возвращение к предыдущему состоянию, имеет значение «снова, заново» соответствует русской приставке #[mark пере-]
+										table
+											tr
+												th write
+												td #[i писать]
+												th #[mark re]write
+												td #[i переписывать]
+											tr
+												th do
+												td #[i делать]
+												th #[mark re]do
+												td #[i переделывать]
+											tr
+												th build
+												td #[i строить]
+												th #[mark re]build
+												td #[i перестраивать]
+											tr
+												th read
+												td #[i читать]
+												th #[mark re]read
+												td #[i перечитывать]
+
+								td(data-type="adjective-verb")
+									strong -en
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -en]] — обозначает наделение свойством, которое передаёт прилагательное, от которого образуется глаголам
+										table
+											tr
+												th hard
+												td #[i трудный]
+												th hard#[mark en]
+												td #[i усложнять]
+											tr
+												th soft
+												td #[i мягкий]
+												th soft#[mark en]
+												td #[i смягчать]
+											tr
+												th sharp
+												td #[i острый]
+												th sharp#[mark en]
+												td #[i заточать]
+											tr
+												th bright
+												td #[i яркий]
+												th bright#[mark en]
+												td #[i освещать]
+
+								td(data-type="noun-adjective")
+									strong multi-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark multi-]] — многократный, означает что-то многочисленное, неоднородное
+										table
+											tr
+												th color
+												td #[i цвет]
+												th #[mark multi]color
+												td #[i многоцветный]
+											tr
+												th media
+												td #[i средство]
+												th #[mark multi]media
+												td #[i многосредственный]
+											tr
+												th purpose
+												td #[i цель]
+												th #[mark multi]purpose
+												td #[i многозадачный]
+											tr
+												th cultural
+												td #[i культура]
+												th #[mark multi]cultural
+												td #[i многонациональный]
+
+								td(data-type="noun-adjective")
+									strong -(i)an
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -(i)an]] — выражает национальную или территориальную принадлежность
+										table
+											tr
+												th Korea
+												td #[i Корея]
+												th Kore#[mark an]
+												td #[i корейский]
+											tr
+												th Japan
+												td #[i Япония]
+												th #[mark.red Japanese]
+												td #[i японский]
+											tr
+												th Ukraine
+												td #[i Украина]
+												th Ukrain#[mark ian]
+												td #[i украинский]
+											tr
+												th Italy
+												td #[i Италия]
+												th Ital#[mark ian]
+												td #[i итальянский]
+
+								td
+
+							//third row
+							tr.review-table__body-row
+								td
+								td(data-type="verb-noun")
+									strong -ance/-ence
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ance/-ence]] — состояние или качество чего-то
+										table
+											tr
+												th prefer
+												td #[i предпочитать]
+												th prefer#[mark ence]
+												td #[i предпочтение]
+											tr
+												th differ
+												td #[i отличаться]
+												th differ#[mark ence]
+												td #[i отличие]
+											tr
+												th appear
+												td #[i появляться]
+												th appear#[mark ance]
+												td #[i появление]
+											tr
+												th depend
+												td #[i зависеть]
+												th depend#[mark ence]
+												td #[i зависимость]
+
+								td(data-type="verb-verb")
+									strong dis-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark dis-]] — меняет значение глагола на отрицательное, либо противоположное
+										table
+											tr
+												th like
+												td #[i нравиться]
+												th #[mark dis]like
+												td #[i не нравиться]
+											tr
+												th agree
+												td #[i соглашаться]
+												th #[mark dis]agree
+												td #[i не соглашаться]
+											tr
+												th obey
+												td #[i повиноваться]
+												th #[mark dis]obey
+												td #[i не повиноваться]
+											tr
+												th appear
+												td #[i появляться]
+												th #[mark dis]appear
+												td #[i исчезать]
+
+								td(data-type="noun-verb,adjective-verb")
+									strong -ify
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ify]] — менее продуктивный способ образования глаголов от прилагательных и существительных
+										table
+											tr
+												th pure
+												td #[i чистый]
+												th pur#[mark ify]
+												td #[i очищать]
+											tr
+												th solid
+												td #[i твердый]
+												th solid#[mark ify]
+												td #[i твердеть]
+											tr
+												th acid
+												td #[i кислота]
+												th acid#[mark ify]
+												td #[i кислить]
+											tr
+												th class
+												td #[i класс]
+												th class#[mark ify]
+												td #[i классифицировать]
+
+
+								td(data-type="adjective-adjective")
+									strong un-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark un-]] — слово с противоположным значением(наиболее продуктивен)
+										table
+											tr
+												th usable
+												td #[i пригодный]
+												th #[mark un]usable
+												td #[i непригодный]
+											tr
+												th believable
+												td #[i вероятный]
+												th #[mark un]believable
+												td #[i невероятный]
+											tr
+												th acceptable
+												td #[i приемлемый]
+												th #[mark un]acceptable
+												td #[i неприемлемый]
+											tr
+												th attractive
+												td #[i привлекательный]
+												th #[mark un]attractive
+												td #[i непривлекательный]
+
+								td(data-type="noun-adjective")
+									strong -ic
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ic]] — указывает на признак чего-то и имеет значение «вызванный чем-то»
+										table
+											tr
+												th base
+												td #[i основа]
+												th bas#[mark ic]
+												td #[i основной]
+											tr
+												th econom
+												td #[i экономика]
+												th econom#[mark ic]
+												td #[i экономический]
+											tr
+												th athlete
+												td #[i спортсмен]
+												th athlet#[mark ic]
+												td #[i спортивный]
+											tr
+												th science
+												td #[i наука]
+												th scientif#[mark ic]
+												td #[i научный]
+
+								td
+
+							//fourth row
+							tr.review-table__body-row
+								td
+								td(data-type="verb-noun")
+									strong -ment
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ment]] — действие, состояние, результат действия
+										table
+											tr
+												th punish
+												td #[i наказывать]
+												th punish#[mark ment]
+												td #[i наказание]
+											tr
+												th agree
+												td #[i соглашаться]
+												th agree#[mark ment]
+												td #[i согласие]
+											tr
+												th govern
+												td #[i управлять]
+												th govern#[mark ment]
+												td #[i управление]
+											tr
+												th develop
+												td #[i развивать]
+												th develop#[mark ment]
+												td #[i развитие]
+											tr
+												th argue
+												td #[i спорить]
+												th argue#[mark ment]
+												td #[i довод, спор, обсуждение]
+
+								td(data-type="verb-verb")
+									strong un-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark un-]] —чаще всего имеют не отрицательное значение, а противоположное
+										table
+											tr
+												th do
+												td #[i делать]
+												th #[mark un]do
+												td #[i отменять]
+											tr
+												th tie
+												td #[i завязывать]
+												th #[mark un]tie
+												td #[i развязывать]
+											tr
+												th cover
+												td #[i покрывать]
+												th #[mark un]cover
+												td #[i открывать]
+											tr
+												th chain
+												td #[i цеплять, сковывать]
+												th #[mark un]chain
+												td #[i отцеплять, освобождать]
+
+								td
+
+								td(data-type="adjective-adjective")
+									strong in-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark in-]] — слово с противоположным значением(чаще всего употребляется перед сочетанием букв #[mark ас] и перед согласной #[mark с] которая произносится как #[mark к])
+										table
+											tr
+												th accurate
+												td #[i точный]
+												th #[mark in]accurate
+												td #[i неточный]
+											tr
+												th correct
+												td #[i правильный]
+												th #[mark in]correct
+												td #[i неправильный]
+											tr
+												th complete
+												td #[i полный]
+												th #[mark in]complete
+												td #[i неполный]
+											tr
+												th acceptable
+												td #[i приемлемый]
+												th #[mark.red unacceptable]
+												td #[i неприемлемый]
+											tr
+												th coherent
+												td #[i связный]
+												th #[mark in]coherent
+												td #[i несвязный]
+
+								td(data-type="noun-adjective")
+									strong -ful
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ful]] — указывает на признак чего-то и имеет значение «полный чего-то»
+										table
+											tr
+												th beauty
+												td #[i красота]
+												th beaut#[mark ful]
+												td #[i красивый]
+											tr
+												th help
+												td #[i помощь]
+												th help#[mark ful]
+												td #[i полезный]
+											tr
+												th power
+												td #[i сила]
+												th power#[mark ful]
+												td #[i мощный]
+											tr
+												th harm
+												td #[i вред]
+												th harm#[mark ful]
+												td #[i вредный]
+
+								td
+
+							//fifth row
+							tr.review-table__body-row
+								td
+								td(data-type="adjective-noun")
+									strong -ity/-ty
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ity/-ty]] — указывают на качество, состояние, которое передает прилагательное, от которого образуется существительное
+										table
+											tr
+												th active
+												td #[i активный]
+												th activ#[mark ity]
+												td #[i активность]
+											tr
+												th able
+												td #[i способный]
+												th abil#[mark ity]
+												td #[i способность]
+											tr
+												th curious
+												td #[i любопытный]
+												th curios#[mark ity]
+												td #[i любопытство]
+											tr
+												th popular
+												td #[i популярный]
+												th popular#[mark ity]
+												td #[i популярность]
+
+								td(data-type="noun-verb,adjective-verb")
+									strong en-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark en-]] — наделять способностью, выраженной существительным или прилагательным
+										table
+											tr
+												th courage
+												td #[i мужество]
+												th #[mark en]courage
+												td #[i поощрять]
+											tr
+												th able
+												td #[i способный]
+												th #[mark en]able
+												td #[i способствовать]
+								td
+
+								td(data-type="adjective-adjective")
+									strong im-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark im-]] — слово с противоположным значением(чаще всего употребляется перед согласной #[mark p] )
+										table
+											tr
+												th polite
+												td #[i вежливый]
+												th #[mark im]polite
+												td #[i невежливый]
+											tr
+												th possible
+												td #[i возможный]
+												th #[mark im]possible
+												td #[i невозможный]
+											tr
+												th patient
+												td #[i терпеливый]
+												th #[mark im]patient
+												td #[i нетерпеливый]
+											tr
+												th perfect
+												td #[i совершенный]
+												th #[mark im]perfect
+												td #[i несовершенный]
+
+								td(data-type="verb-adjective")
+									strong -ing
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ing]] — имеет значение «вызывать эффект, эмоции»
+										table
+											tr
+												th interest
+												td #[i интерес]
+												th interest#[mark ing]
+												td #[i интересный]
+											tr
+												th amaze
+												td #[i удивление]
+												th amaz#[mark ing]
+												td #[i удивительный]
+											tr
+												th disturb
+												td #[i беспокойство]
+												th disturb#[mark ing]
+												td #[i беспокоящий]
+											tr
+												th shock
+												td #[i шок]
+												th shock#[mark ing]
+												td #[i шокирующий]
+											tr
+												th excite
+												td #[i волнение]
+												th excit#[mark ing]
+												td #[i волнующий]
+
+								td
+
+							//sixth row
+							tr.review-table__body-row
+								td
+
+								td(data-type="noun-noun")
+									strong -ist
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ist]] — принадлежность к определенной профессии, сфере труда, направлению науки, политики, искусства
+										table
+											tr
+												th impression
+												td #[i впечатление]
+												th impression#[mark ist]
+												td #[i импрессионист]
+											tr
+												th art
+												td #[i искусство]
+												th art#[mark ist]
+												td #[i художник]
+											tr
+												th science
+												td #[i наука]
+												th scient#[mark ist]
+												td #[i ученый]
+											tr
+												th commune
+												td #[i коммуна, община]
+												th commun#[mark ist]
+												td #[i коммунист]
+								td(data-type="verb-verb")
+									strong out-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark out-]] — пере- (больше, сильнее)
+										table
+											tr
+												th live
+												td #[i жить]
+												th #[mark out]live
+												td #[i пережить]
+											tr
+												th weigh
+												td #[i весить]
+												th #[mark out]weigh
+												td #[i перевесить]
+											tr
+												th grow
+												td #[i расти]
+												th #[mark out]grow
+												td #[i перерасти]
+											tr
+												th do
+												td #[i делать]
+												th #[mark out]do
+												td #[i переделать]
+								td
+
+								td(data-type="adjective-adjective")
+									strong il-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark il-]] — слово с противоположным значением(чаще всего употребляется перед согласной #[mark l] )
+										table
+											tr
+												th logical
+												td #[i логический]
+												th #[mark il]logical
+												td #[i нелогический]
+											tr
+												th legal
+												td #[i законный]
+												th #[mark il]legal
+												td #[i незаконный]
+											tr
+												th literate
+												td #[i грамотный]
+												th #[mark il]literate
+												td #[i неграмотный]
+											tr
+												th legible
+												td #[i разборчивый]
+												th #[mark il]legible
+												td #[i неразборчивый]
+
+
+								td(data-type="verb-adjective")
+									strong -ive
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ive]] — имеет значение «вызывать эффект, эмоции», «иметь качество», «способность»
+										table
+											tr
+												th attract
+												td #[i привлечение]
+												th attract#[mark ive]
+												td #[i привлекательный]
+											tr
+												th impress
+												td #[i впечатление]
+												th impress#[mark ive]
+												td #[i впечатляющий]
+											tr
+												th express
+												td #[i выражение]
+												th express#[mark ive]
+												td #[i выразительный]
+											tr
+												th select
+												td #[i выбор]
+												th select#[mark ive]
+												td #[i избирательный]
+
+								td
+
+							//seventh row
+							tr.review-table__body-row
+								td
+
+								td(data-type="adjective-noun")
+									strong -ness
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ness]] — имеет значение «состояние, качество»(обозначает свойство, которое передаёт прилагательное, от которого образовано существительное)
+										table
+											tr
+												th cute
+												td #[i милый]
+												th cute#[mark ness]
+												td #[i миловидность, привлекательность ]
+											tr
+												th dark
+												td #[i темный]
+												th dark#[mark ness]
+												td #[i темнота]
+											tr
+												th kind
+												td #[i добрый]
+												th kind#[mark ness]
+												td #[i доброта]
+											tr
+												th polite
+												td #[i вежливый]
+												th polite#[mark ness]
+												td #[i вежливость]
+
+								td(data-type="noun-verb")
+									strong inter-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark inter-]] — глаголы, которые обозначают действие, направленное внутрь
+										table
+											tr
+												th change
+												td #[i изменение]
+												th #[mark inter]change
+												td #[i изменять]
+											tr
+												th connect
+												td #[i соединение]
+												th #[mark inter]connect
+												td #[i соединять]
+											tr
+												th mix
+												td #[i смешение]
+												th #[mark inter]mix
+												td #[i смешивать]
+											tr
+												th act
+												td #[i действие]
+												th #[mark inter]act
+												td #[i действовать]
+
+
+
+								td
+
+								td(data-type="adjective-adjective")
+									strong ir-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark ir-]] — слово с противоположным значением(употребляется перед согласной #[mark r] )
+										table
+											tr
+												th responsible
+												td #[i ответственный]
+												th #[mark ir]responsible
+												td #[i безответственный]
+											tr
+												th regular
+												td #[i регулярный]
+												th #[mark ir]regular
+												td #[i нерегулярный]
+											tr
+												th relevant
+												td #[i соответствующий]
+												th #[mark ir]relevant
+												td #[i несоответствующий]
+											tr
+												th reasonable
+												td #[i разумный]
+												th #[mark ir]reasonable
+												td #[i неразумный]
+
+								td(data-type="noun-adjective")
+									strong -less
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -less]] — имеет значение «без» (указывает на отсутствие какого-то признака, качества)
+										table
+											tr
+												th fear
+												td #[i страх]
+												th fear#[mark less]
+												td #[i бесстрашный]
+											tr
+												th hope
+												td #[i надежда]
+												th hope#[mark less]
+												td #[i безнадежный]
+											tr
+												th care
+												td #[i забота]
+												th care#[mark less]
+												td #[i беспечный]
+											tr
+												th doubt
+												td #[i сомнение]
+												th doubt#[mark less]
+												td #[i бесспорный]
+											tr
+												th use
+												td #[i использование]
+												th use#[mark less]
+												td #[i бесполезный]
+
+								td
+
+							//eighth row
+							tr.review-table__body-row
+								td
+
+								td(data-type="verb-noun")
+									strong -ing
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ing]] — действие, результат, процесс, материал, продукт
+										table
+											tr
+												th meet
+												td #[i встреча]
+												th meet#[mark ing]
+												td #[i встреча, совещание ]
+											tr
+												th proceed
+												td #[i продолжение]
+												th proceed#[mark ing]
+												td #[i акт, практика]
+											tr
+												th build
+												td #[i строить]
+												th build#[mark ing]
+												td #[i здание, строительство]
+											tr
+												th wad
+												td #[i набивать чем—то]
+												th wadd#[mark ing]
+												td #[i подкладка, набивка]
+
+								td
+								td
+								td
+								td(data-type="verb-adjective")
+									strong -ible/-able
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ible/-able]] — указывают на возможность и значение «выполнимый»
+										table
+											tr
+												th pass
+												td #[i проходить]
+												th pass#[mark ible]
+												td #[i проходимый]
+											tr
+												th read
+												td #[i читать]
+												th read#[mark ible]
+												td #[i читаемый]
+											tr
+												th suit
+												td #[i подходить]
+												th suit#[mark able]
+												td #[i подходящий]
+											tr
+												th bear
+												td #[i нести]
+												th bear#[mark able]
+												td #[i сносный, терпимый]
+
+								td
+
+							//ninth row
+							tr.review-table__body-row
+								td
+
+								td(data-type="verb-noun")
+									strong -sion/-tion
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -sion/-tion]] —действие, состояние, абстрактные понятия (#[mark -tion] прибавляется к глаголам, которые оканчиваются на #[mark -t], #[mark -ate], #[mark -tain] и согласные кроме #[mark -l], #[mark -n], #[mark -r] /// #[mark -sion] присоединяется к глaголам, оканчивающимся на #[mark -de, -d, -se, -ss, -mit] и после согласных #[mark -l, -n, -r]. )
+										table
+											tr
+												th solve
+												td #[i решать]
+												th solu#[mark tion]
+												td #[i решение]
+											tr
+												th discuss
+												td #[i обсуждать]
+												th discus#[mark sion]
+												td #[i обсуждение]
+											tr
+												th decide
+												td #[i решать]
+												th deci#[mark sion]
+												td #[i решение]
+											tr
+												th divide
+												td #[i делить]
+												th divi#[mark sion]
+												td #[i деление]
+											tr
+												th stay
+												td #[i оставаться]
+												th sta#[mark tion]
+												td #[i остановка]
+
+								td
+								td
+								td
+
+								td(data-type="verb-adjective, noun-adjective")
+									strong -ed
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ed]] — имеет значения «подвергаться влиянию», «иметь характеристики, форму»
+										table
+											tr
+												th interest
+												td #[i интерес]
+												th interest#[mark ed]
+												td #[i интересный]
+											tr
+												th amaze
+												td #[i удивление]
+												th amaze#[mark ed]
+												td #[i удивительный]
+											tr
+												th red blood
+												td #[i красная кровь]
+												th red-blood#[mark ed]
+												td #[i с красной кровью]
+											tr
+												th arch
+												td #[i арка]
+												th arch#[mark ed]
+												td #[i арочный]
+
+								td
+
+							//tenth row
+							tr.review-table__body-row
+								td
+								td
+								td
+								td
+								td
+
+								td(data-type="noun-adjective")
+									strong -y
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -y]] — выражает значение «иметь признак»
+										table
+											tr
+												th sport
+												td #[i спорт]
+												th sport#[mark y]
+												td #[i спортивный]
+											tr
+												th dirt
+												td #[i грязь]
+												th dirt#[mark y]
+												td #[i грязный]
+											tr
+												th health
+												td #[i здоровье]
+												th health#[mark y]
+												td #[i здоровый]
+											tr
+												th wealth
+												td #[i богатство]
+												th wealth#[mark y]
+												td #[i богатый]
+
+								td
+
+							//eleventh row
+							tr.review-table__body-row
+								td
+								td
+								td
+								td
+								td
+
+								td(data-type="noun-adjective")
+									strong -ous
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ous]] — выражает характеристику, имеет значение «быть наполненным каким-то качеством»
+										table
+											tr
+												th danger
+												td #[i опасность]
+												th danger#[mark ous]
+												td #[i опасный]
+											tr
+												th poison
+												td #[i яд]
+												th poison#[mark ous]
+												td #[i ядовитый]
+											tr
+												th courage
+												td #[i мужество]
+												th courage#[mark ous]
+												td #[i смелый]
+											tr
+												th fame
+												td #[i слава]
+												th fam#[mark ous]
+												td #[i знаменитый]
+
+								td
+
+							//twelfth row
+							tr.review-table__body-row
+								td
+								td
+								td
+								td
+								td
+
+								td(data-type="noun-adjective")
+									strong -ent, -ant
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ent, -ant]] — образование прилагательных от существительных, заканчивающихся на #[mark –ance], #[mark -ence]:
+										table
+											tr
+												th vibr#[mark ance]
+												td #[i жизнерадостность]
+												th vibr#[mark ant]
+												td #[i яркий, живой, энергичный]
+											tr
+												th transpar#[mark ence]
+												td #[i прозрачность]
+												th transpar#[mark ent]
+												td #[i прозрачный]
+											tr
+												th import#[mark ance]
+												td #[i важность]
+												th import#[mark ant]
+												td #[i важный]
+
+								td

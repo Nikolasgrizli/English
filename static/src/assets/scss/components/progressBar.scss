@@ -1,0 +1,16 @@
+.progressBar {
+	position: sticky;
+	top: 0;
+	height: 0;
+	z-index: 100;
+
+	&__inner {
+		width: 0%;
+		background-color: var(--color-main);
+		height: 5px;
+		position: absolute;
+		will-change: width;
+		transform: translateZ(0);
+		opacity: .7;
+	}
+}

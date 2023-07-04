@@ -1,0 +1,299 @@
+$timing: .8s
+$blue-night: #200F37
+$blue-night-2: #272065
+$blue-day: #21D2F2
+$blue-day-2: #B0FFF8
+$moon-shade: #F8E3EF
+$cloud-shade: #F6F8F8
+$w: 15em // 6
+$h: 7em
+$offset: .5em
+$easeOutQuad: cubic-bezier(0.165, 0.84, 0.44, 1)
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+
+%absolute
+	position: absolute
+	left: 0
+	top: 0
+	right: 0
+	bottom: 0
+
+=cicles($size, $posx, $posy, $gradient: null, $color:#fff)
+	width: $size
+	height: $size
+	display: block
+	position: absolute
+	left: $posx
+	top: $posy
+	@if $gradient == null
+		background: $color
+		box-shadow: ($size*3) ($size*-3) 0 -3px $color
+		filter: blur(.5px)
+	@else
+		background: linear-gradient(unquote($gradient), $color, rgba($color, 0))
+		box-shadow: $size ($size*-1) 0 ($offset*-1) rgba($color, .5)
+	    border-radius: 100%
+
+.theme-switcher-gap
+	+rmin(1024)
+		padding-right: 110px
+
+.menu-open
+	.switch
+		+r(767)
+			opacity: 0
+			pointer-events: none
+
+.switch
+    // font-size: 7px
+	width: $w
+	height: $h
+	display: block
+	position: absolute
+	right: 2rem
+	top: 2rem
+	+css-lock(5,7,350,767)
+	+r(1023)
+		top: -6.5rem
+		right: 7rem
+		z-index: 100
+		+r(600)
+			top: -6rem
+			right: 6rem
+	&:hover
+		cursor: pointer
+    // Center
+    // margin: 50px auto
+
+	&__background
+		@extend %absolute
+		border-radius: (calc($h / 2))
+		box-shadow: 0 (calc($h / 4)) (calc($h / 2)) ($offset*-2) rgba($blue-night, .3)
+		transition: box-shadow $timing
+		overflow: hidden
+
+		&::before
+			@extend %absolute
+			content: ''
+			background: linear-gradient($blue-night, $blue-night-2)
+			border-radius: (calc($h / 2))
+			transition: opacity $timing
+			overflow: hidden
+			z-index: -2
+
+		&::after
+			@extend %absolute
+			content: ''
+			opacity: 0
+			background: linear-gradient(left, $blue-day, $blue-day-2)
+			border-radius: (calc($h / 2))
+			transition: opacity $timing
+            // overflow hidden
+			z-index: -2
+
+	&__toggle
+		content: ''
+		height: ($h - ($offset*2))
+		width: ($h - ($offset*2))
+		position: relative
+		display: block
+		top: $offset
+		left: $offset
+		background: white
+		border-radius: 100%
+		box-shadow: inset ($offset) ($offset*-1) 0 $moon-shade, 0 0 (calc($h / 1.5)) rgba(white, .65)
+		transition: left $timing, box-shadow $timing
+		overflow: hidden
+		cursor: pointer
+
+        // Sun
+		&::before,
+		&::after
+			content: ''
+			height: 90%
+			width: 90%
+			position: absolute
+			left: 50%
+			top: 50%
+			z-index: -1
+			opacity: 0
+			transition: transition $timing, opacity $timing
+			background: rgba(white, 0.65)
+			filter: blur($offset)
+
+		&::before
+			transform: translate(-50%, -50%) rotate(45deg)
+
+		&::after
+			transform: translate(-50%, -50%)
+
+    // Night
+	&__moon
+		+cicles((calc($h / 5)), 40%, 35%, 'top right', $moon-shade)
+        transition: transform $timing, opacity $timing
+
+		&::before
+			content: ''
+			+cicles((calc($h / 6)), -70%, 195%, 'top right', $moon-shade)
+            transform: rotate(-60deg)
+
+		&::after
+			content: ''
+			+cicles((calc($h / 4)), 190%, 55%, 'top right', $moon-shade)
+
+	&__stars
+		+cicles((calc($h / 16)), 60%, 35%, null, white)
+        transition: transform $timing, opacity $timing
+
+		&::before
+			content: ''
+			+cicles((calc($h / 20)), 700%, 560%, null, white)
+            transform: rotate(-75deg)
+            transition: transform $timing, opacity $timing
+
+		&::after
+			content: ''
+			height: (calc($h / 28))
+			width: (calc($h / 28))
+			position: absolute
+			left: 200%
+			top: 260%
+			opacity: 0
+			background: linear-gradient(left, white, rgba(white, 0))
+			filter: blur(.5px)
+			border-radius: 100%
+			animation: falling-stars ($timing*8) $easeOutQuad infinite
+			animation-delay: $timing*4
+
+	&__clouds
+		height: floor(calc($h/5))
+		width: floor(calc($h/5))
+		background: white
+		position: absolute
+		top: 50%
+		left: (floor(calc($h/5))*-3)
+		display: block
+		transition: ($timing*2) $easeOutBack
+		border-radius: 50% 50% 0 50%
+
+		&::before,
+		&::after
+			content: ''
+			height: floor(calc($h / 6))
+			width: floor(calc($h / 6))
+			background: white
+			position: absolute
+			border-radius: 50% 50% 0 50%
+			left: -33%
+			bottom: 0
+			box-shadow: inset (calc($offset/2)) (calc($offset / 4)) 0 $cloud-shade
+
+		&:after
+			height: floor(calc($h / 6.5))
+			width: floor(calc($h / 6.5))
+			left: auto
+			right: -30%
+			border-radius: 100%
+
+	&__input
+		display: none
+
+		&:checked
+			& + .switch__background
+				box-shadow: 0 (calc($h / 4)) (calc($h / 2)) ($offset*-2) rgba($blue-day, .3)
+                // Night
+				&::before
+					opacity: 0
+                // Day
+				&::after
+					opacity: 1
+
+				.switch__toggle
+                    // transform translateX($w - $h)
+					left: ($w - $h + $offset) // temp fix
+					box-shadow: inset 0 0 0.1px white, 0 0 ($offset*4) white
+					animation: overlay 0s forwards
+					animation-delay: (calc($timing/2))
+
+					&::before,
+					&::after
+						opacity: 1
+						transition-delay: (calc($timing/2))
+
+					&::before
+						transform: translate(-50%, -50%) rotate(45deg)
+						animation: spin-before ($timing*16) linear infinite
+
+					&::after
+						transform: translate(-50%, -50%)
+						animation: spin-after ($timing*16) linear infinite
+
+				.switch__moon
+					opacity: 0
+					transform: translate(-50%, 100%) rotate(30deg)
+
+				.switch__stars
+					opacity: 0
+					transform: translateX(floor(calc($h/3)*-1))
+
+					&::before
+						opacity: 0
+						transform: translateX(floor(calc($h / 4)*-1))
+
+					&::after
+						animation: none
+
+				.switch__clouds
+					transform: translateX(calc($w/2))
+					transition-delay: (calc($timing/4))
+					animation: cloud-move ($timing*10) linear infinite
+					animation-delay: ($timing*2)
+
+					&::before,
+					&::after
+						animation: cloud-move ($timing*10) linear infinite
+						animation-delay: ($timing*2)
+
+@keyframes overlay
+	0%
+		overflow: hidden
+	100%
+		overflow: visible
+
+@keyframes spin-before
+	0%
+		transform: translate(-50%, -50%) rotate(45deg)
+	100%
+		transform: translate(-50%, -50%) rotate(360deg+45)
+
+@keyframes spin-after
+	0%
+		transform: translate(-50%, -50%) rotate(0)
+	100%
+		transform: translate(-50%, -50%) rotate(360deg)
+
+@keyframes falling-stars
+	0%
+		width: 50%
+		opacity: 1
+		transform: translate(calc($h / 2), (calc($h / 2)*-1)) rotate(-45deg)
+	5%
+		width: 400%
+		opacity: 1
+	15%
+		box-shadow: -100px -30px 0 -3px white
+	25%,
+	100%
+		box-shadow: -100px -30px 0 -6px white
+		width: 400%
+		opacity: 0
+		transform: translate((calc($h / 2)*-1), calc($h / 2)) rotate(-45deg)
+
+@keyframes cloud-move
+	0%
+		box-shadow: inset (calc($offset/2)) (calc($offset / 4)) 0 $cloud-shade, floor(calc($w/3)*-1) floor(calc($h/3)*-1) 5px -2px rgba($blue-day, 0)
+	50%
+		box-shadow: inset (calc($offset/2)) (calc($offset / 4)) 0 $cloud-shade, floor(calc($w/10)*-1) floor(calc($h/3)*-1) 6px -2px lighten($blue-day, 50%)
+	90%,
+	100%
+		box-shadow: inset (calc($offset/2)) (calc($offset / 4)) 0 $cloud-shade, floor(calc($w/100)*-1) floor(calc($h/3)*-1) 15px 2px rgba($blue-day, 0)

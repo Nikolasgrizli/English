@@ -1,0 +1,35 @@
+.contents{
+	&__list{
+		@extend %reset-list;
+		// display: grid;
+		// gap: 1em .7em;
+		// @include rmin(768){
+		// 	grid-template-columns: 1fr 1fr;
+		// 	grid-template-rows: auto auto;
+		// }
+		@include rmin(768){
+			column-count: 2;
+			column-gap: 1em;
+		}
+	}
+	&__item{
+		display: flex;
+		align-items: center;
+		margin-bottom: 0.7em;
+		.svg-icon{
+			max-width: 100%;
+		}
+	}
+	&__icon{
+		margin-right: 0.5em;
+		width: em(32,19);
+		height: em(32,19);
+		flex-shrink: 0;
+	}
+	&__text{
+		&:hover{
+			text-decoration: none;
+			color: var(--color-accent);
+		}
+	}
+}

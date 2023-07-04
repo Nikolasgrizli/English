@@ -1,0 +1,10 @@
+mixin timeline(data)
+	.timeline
+		+tag(data.type === 'num' ? 'ol' : 'ul').timeline__list.auto-fading-container
+			each item in data.items
+				li.timeline__item
+					.timeline__dot
+					+tag(data.title)(class!=data.titleClass)!=item.title
+					p!=item.text
+
+

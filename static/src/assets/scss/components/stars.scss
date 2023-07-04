@@ -1,0 +1,25 @@
+.stars {
+	font-size: rem(24, 10);
+
+	&__list {
+		@extend %reset-list;
+		display: flex;
+
+		img {
+			width: .75em;
+			height: .75em;
+		}
+
+		li+li {
+			margin-left: 0.3em;
+		}
+	}
+
+	&__item {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1em;
+		height: 1em;
+	}
+}

@@ -1,0 +1,308 @@
+extends ../layout/main
+
+block variables
+	- title = 'Fuel-efficient cars table';
+	- pageClass = 'article-page';
+
+
+
+
+block content
+	-
+		var cars = _data('fuel-efficient-cars-table_json');
+	script.
+		window.carsFuelEfficient = !{JSON.stringify(cars)};
+
+
+
+
+
+	section.section.section_big-gap.section_white
+		.container
+
+			h1 elements for the table
+			h2 range slider
+			+rangeSlider()
+
+			h2 custom selects
+
+			h3 years
+			-
+				var cs1 = {
+					searchable: true,
+					defaultSelected: false,
+					placeholder: 'Model year',
+					toSteps: true,
+					arr: [2000, 2019],
+				}
+			+customSelect(cs1)
+
+			h3 models
+			-
+				var cs2 = {
+					searchable: true,
+					defaultSelected: false,
+					placeholder: 'Make',
+					toSteps: false,
+					arr: [
+						"Toyota Camry",
+						"Honda Civic",
+						"Ford Mustang",
+						"Chevrolet Corvette",
+						"Volkswagen Golf",
+						"BMW 3 Series",
+						"Mercedes-Benz C-Class",
+						"Audi A4",
+						"Nissan Altima",
+						"Mazda3",
+						"Hyundai Elantra",
+						"Subaru Outback",
+						"Kia Sorento",
+						"Jeep Wrangler",
+						"Lexus RX",
+						"Volvo XC90",
+						"Tesla Model 3",
+						"Porsche 911",
+						"Jaguar F-Type",
+						"Land Rover Range Rover"
+					]
+				}
+			+customSelect(cs2)
+
+			h3 Fuel type
+			-
+				var cs3 = {
+					searchable: true,
+					defaultSelected: false,
+					placeholder: 'Fuel type',
+					toSteps: false,
+					arr: [
+						"Gasoline",
+						"Diesel",
+						"Electric",
+						"Hybrid",
+						"CNG",
+						"LPG",
+						"Hydrogen"
+					]
+
+				}
+			+customSelect(cs3)
+
+			h3 Body style
+			-
+				var cs4 = {
+					searchable: true,
+					defaultSelected: false,
+					placeholder: 'Body style',
+					toSteps: false,
+					arr: [
+						"Sedan",
+						"Hatchback",
+						"Coupe",
+						"Convertible",
+						"SUV",
+						"closeover",
+						"Minivan",
+						"Pickup Truck",
+						"Van",
+						"Wagon"
+					]
+				}
+			+customSelect(cs4)
+
+			h3 Tags
+
+			.custom-tags.js-tags
+				.custom-tags__container
+					.custom-tags__clear.tag.tag_clear.js-clear-tags
+						span.text Clear all
+						+icon('close')
+					.custom-tags__tag.tag.js-tag
+						span.text 2018
+						+icon('close')
+					.custom-tags__tag.tag.js-tag
+						span.text 2022
+						+icon('close')
+					.custom-tags__tag.tag.js-tag
+						span.text Audi
+						+icon('close')
+					.custom-tags__tag.tag.js-tag
+						span.text Alfa Romeo
+						+icon('close')
+
+
+			h3 btns
+			.review-btns
+				button.btn.btn_reset(type="button") Clear
+				button.btn.btn_primary(type="button") Apply
+
+
+			h3 table with column sorting and tooltips
+
+
+
+			.review-table.js-review-table
+				.review-table__container
+					table.review-table__root
+						thead.review-table__thead
+							tr.review-table__head-row.review-table__head-row--first
+								th
+								th
+								th
+								th
+								th
+								th
+								th(colspan="2") Fuel Consumption L/100km
+								th
+								th
+							tr.review-table__head-row.review-table__head-row--second
+								th: span Model Year
+								th: span Make
+								th: span Model
+								th: span Variant
+								th
+									.review-table__sort-th
+										span Price, <br/>$ from
+										button.review-table__sort-btn.js-sort-btn(type="button")
+											+icon('sort-top')
+											+icon('sort-bottom')
+								th: span Fuel Type
+								th
+									.review-table__sort-th
+										span Combined
+										button.review-table__sort-btn.review-table__sort-btn--activeBottom.js-sort-btn(type="button")
+											+icon('sort-top')
+											+icon('sort-bottom')
+								th
+									.review-table__sort-th
+										span Urban
+										button.review-table__sort-btn.review-table__sort-btn--activeTop.js-sort-btn(type="button")
+											+icon('sort-top')
+											+icon('sort-bottom')
+								th
+									.review-table__sort-th
+										span Electric <br/>Range, km
+										button.review-table__sort-btn.js-sort-btn(type="button")
+											+icon('sort-top')
+											+icon('sort-bottom')
+								th
+									.review-table__sort-th
+										span Annual Fuel <br/>Cost, $
+										button.review-table__sort-btn.js-sort-btn(type="button")
+											+icon('sort-top')
+											+icon('sort-bottom')
+
+						tbody.review-table__tbody
+							//- tr.review-table__body-row
+							//- 	td: span 2018
+							//- 	td: span Audi
+							//- 	td: span A4
+							//- 	td
+							//- 		span 4dr Sedan quattro 2.0T Progressiv
+							//- 		+iconWithTooltip('info', null)
+							//- 			table
+							//- 				tr
+							//- 					td: span Engine Displacement
+							//- 					td: span 1.5
+							//- 				tr
+							//- 					td: span Engine Configuration
+							//- 					td: span 4cyl
+							//- 				tr
+							//- 					td: span Transmission Type Description
+							//- 					td: span Auto
+							//- 				tr
+							//- 					td: span Side Door No
+							//- 					td: span 4
+							//- 				tr
+							//- 					td: span Seating Capacity
+							//- 					td: span 5
+							//- 				tr
+							//- 					td: span Body Style
+							//- 					td: span SUV
+							//- 				tr
+							//- 					td: span Drivetrain
+							//- 					td: span 2WD
+							//- 	td: span 45 600
+							//- 	td
+							//- 		+icon('fuel_electricity',{cls: 'review-table__fuel-icon'})
+							//- 	td: span 8.5
+							//- 	td: span 11.1
+							//- 	td: span 0
+							//- 	td: span 1 650
+
+							//- tr.review-table__body-row
+							//- 	td: span 2018
+							//- 	td: span Audi
+							//- 	td: span A4
+							//- 	td
+							//- 		span 4dr Sedan quattro 2.0T Progressiv
+							//- 		+iconWithTooltip('info', null)
+							//- 			table
+							//- 				tr
+							//- 					td: span Engine Displacement
+							//- 					td: span 1.5
+							//- 				tr
+							//- 					td: span Engine Configuration
+							//- 					td: span 4cyl
+							//- 				tr
+							//- 					td: span Transmission Type Description
+							//- 					td: span Auto
+							//- 				tr
+							//- 					td: span Side Door No
+							//- 					td: span 4
+							//- 				tr
+							//- 					td: span Seating Capacity
+							//- 					td: span 5
+							//- 				tr
+							//- 					td: span Body Style
+							//- 					td: span SUV
+							//- 				tr
+							//- 					td: span Drivetrain
+							//- 					td: span 2WD
+							//- 	td: span 45 600
+							//- 	td
+							//- 		+icon('fuel_gas',{cls: 'review-table__fuel-icon'})
+							//- 	td: span 8.5
+							//- 	td: span 11.1
+							//- 	td: span 0
+							//- 	td: span 1 650
+
+
+							//- tr.review-table__body-row
+							//- 	td: span 2018
+							//- 	td: span Audi
+							//- 	td: span A4
+							//- 	td
+							//- 		span 4dr Sedan quattro 2.0T Progressiv
+							//- 		+iconWithTooltip('info', null)
+							//- 			table
+							//- 				tr
+							//- 					td: span Engine Displacement
+							//- 					td: span 1.5
+							//- 				tr
+							//- 					td: span Engine Configuration
+							//- 					td: span 4cyl
+							//- 				tr
+							//- 					td: span Transmission Type Description
+							//- 					td: span Auto
+							//- 				tr
+							//- 					td: span Side Door No
+							//- 					td: span 4
+							//- 				tr
+							//- 					td: span Seating Capacity
+							//- 					td: span 5
+							//- 				tr
+							//- 					td: span Body Style
+							//- 					td: span SUV
+							//- 				tr
+							//- 					td: span Drivetrain
+							//- 					td: span 2WD
+							//- 	td: span 45 600
+							//- 	td
+							//- 		+icon('fuel_diesel',{cls: 'review-table__fuel-icon'})
+							//- 	td: span 8.5
+							//- 	td: span 11.1
+							//- 	td: span 0
+							//- 	td: span 1 650
+

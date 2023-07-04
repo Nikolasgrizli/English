@@ -1,0 +1,97 @@
+@import 'nouislider/dist/nouislider';
+
+
+.range-slider {
+
+
+	.noUi-target {
+		display: block;
+		margin: 0 auto;
+		max-width: calc(100% - 1rem);
+		height: 0.65rem;
+		background: var(--color-border_light);
+		border-radius: 0;
+		border: none;
+		box-shadow: none;
+
+		.noUi-connect {
+			background-color: var(--color-main);
+		}
+
+		.noUi-handle {
+			outline: none;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 50%;
+			background-color: var(--color-main);
+			box-shadow: 0 0 0px 1px var(--color-bg);
+			border: 3px solid var(--color-main);
+			cursor: grab;
+			transform: translateX(-50%);
+			&::before,
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	&__inputs {
+		display: grid;
+		font-size: 2rem;
+		gap: 1rem;
+		margin-bottom: 2rem;
+		grid-template-columns: repeat(2, 1fr);
+
+		&:focus-within {
+			border-color: var(--color-border);
+		}
+
+		.js-size-dealer {
+			padding: .3em 1.45em .3em .3em;
+			color: transparent;
+			opacity: 0;
+			pointer-events: none;
+			user-select: none;
+			display: block;
+			white-space: nowrap;
+			font-feature-settings: "tnum";
+			font-variant-numeric: tabular-nums;
+			font-family: monospace;
+		}
+	}
+
+	&__input {
+		width: 100%;
+		line-height: 1.5em;
+		color: var(--color-text);
+		outline: none;
+		border: 1px solid var(--color-border_light);
+		border-radius: 3px;
+		padding: 0.5em 1em;
+
+		&-wrapper {
+			position: relative;
+
+		}
+
+		&-block {
+			position: relative;
+		}
+	}
+
+	&__placeholder {
+		color: var(--color-border_light);
+		line-height: 1.5em;
+	}
+
+	&__units {
+		font-size: 75%;
+	}
+
+	&__graph {
+		@include r(1099) {
+			width: 100%;
+			height: auto;
+		}
+	}
+}

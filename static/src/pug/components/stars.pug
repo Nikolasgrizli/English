@@ -1,0 +1,41 @@
+mixin stars(value, modClass = '')
+	- var star = `${pathPrefix}img/icons/star.svg`
+	- var starHalf = `${pathPrefix}img/icons/star-half.svg`
+	- var starEmpty = `${pathPrefix}img/icons/star-empty.svg`
+	div(class=`stars ${modClass}`)
+		ul.stars__list
+			li.stars__item
+				if value <= '0'
+					img(src=`${starEmpty}` alt="")
+				else if value < '1'
+					img(src=`${starHalf}` alt="")
+				else if value >= '1'
+					img(src=`${star}` alt="")
+			li.stars__item
+				if value <= '1'
+					img(src=`${starEmpty}` alt="")
+				else if value < '2'
+					img(src=`${starHalf}` alt="")
+				else if value >= '2'
+					img(src=`${star}` alt="")
+			li.stars__item
+				if value <= '2'
+					img(src=`${starEmpty}` alt="")
+				else if value < '3'
+					img(src=`${starHalf}` alt="")
+				else if value >= '3'
+					img(src=`${star}` alt="")
+			li.stars__item
+				if value <= '3'
+					img(src=`${starEmpty}` alt="")
+				else if value < '4'
+					img(src=`${starHalf}` alt="")
+				else if value >= '4'
+					img(src=`${star}` alt="")
+			li.stars__item
+				if value <= '4'
+					img(src=`${starEmpty}` alt="")
+				else if value < '5'
+					img(src=`${starHalf}` alt="")
+				else if value >= '5'
+					img(src=`${star}` alt="")

@@ -1,0 +1,74 @@
+.timeline {
+	max-width: 1150px;
+	display: block;
+	margin: 0 auto;
+	--tlGap: 6rem;
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 1em;
+		left: 0%;
+		width: 1px;
+		height: calc(100% - 2em);
+		background-color: #D7D0DD;
+		@include rmin(768){
+			left: 50%;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-flow: row wrap;
+		@include counter('tl', '');
+
+	}
+
+	&__item {
+		flex: 1 1 100%;
+		min-height: 20rem;
+		position: relative;
+		&::before{
+			font-size: 7.2rem;
+			font-weight: 700;
+			line-height: 1;
+			color: var(--color-accent);
+		}
+		&::after{
+			content: '';
+			position: absolute;
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			background-color: #C2BBC8;
+			top: 2.35rem;
+			left: calc(0% - 1.25rem);
+			@include rmin(768){
+				left: calc(50% - 1.25rem);
+			}
+
+		}
+
+		@include r(767){
+			padding-left: 2rem;
+		}
+
+		@include rmin(768){
+			&:nth-child(odd) {
+				text-align: right;
+				padding-right: calc(50% + var(--tlGap));
+
+			}
+
+			&:nth-child(even) {
+				text-align: left;
+				padding-left: calc(50% + var(--tlGap));
+			}
+			&:not(:first-child) {
+				margin-top: -50px;
+			}
+		}
+
+	}
+}

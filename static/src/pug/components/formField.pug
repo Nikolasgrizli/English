@@ -1,0 +1,38 @@
+mixin formField(data)
+	-
+		var field = data || '';
+
+
+	.form__line&attributes(attributes)
+		label.form__field(class={'form__checkbox': field.type === 'checkbox'})
+			if field.type === 'select'
+				select.form__input.form__input_select(id!=field.id, name!=field.name, data-validate!=field.validate )
+					option(selected, disabled, value='')!=field.placeholder
+					each option in field.options
+						option(value=!option.value)!=option.text
+			else
+				input.form__input(
+					id!=field.id,
+					type!=field.type,
+					data-value!=field.defaultValue || 0,
+					name!=field.name,
+					placeholder!=field.label ? '' : field.placeholder,
+					data-validate!=field.validate
+					)
+
+			if field.type === 'checkbox' || field.type === 'radio'
+				.pseudo
+				.text
+					div!=field.text
+
+
+			if field.required
+				span.error.hidden.input-error(aria-live="polite")
+					| The field must be filled
+
+
+			if field.label
+				.form__label!=field.label
+
+
+			block

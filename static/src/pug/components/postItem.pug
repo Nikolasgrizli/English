@@ -1,0 +1,15 @@
+mixin postItem(link,title,img=link+'_1',imgType="jpg")
+	li.post-item&attributes(attributes)
+		a.post-item__link.link-reset(href=`https://mny.com.au/${link}/`)
+			+figureImg({
+				name:   img,
+				ext:    imgType,
+				w:      1500,
+				h:      1000,
+				cls: 'post-item__img'
+			})
+			.post-item__text
+				h3.h3.post-item__title!=title
+				.post-item__description
+					block
+				.post-item__pseudolink Read more

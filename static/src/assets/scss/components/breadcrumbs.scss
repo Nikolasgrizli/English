@@ -1,0 +1,62 @@
+.breadcrumbs{
+    @extend %reset-list;
+    display: flex;
+    align-items: center;
+    @include r(1023){
+        white-space: nowrap;
+        overflow: auto;
+        scroll-snap-type: x mandatory;
+        &__container{
+            position: relative;
+            // &::after{
+            //     content: '';
+            //     position: absolute;
+            //     width: 50px;
+            //     height: 100%;
+            //     pointer-events: none;
+            //     right: 0;
+            //     top: 0;
+            //     background: linear-gradient(to left, var(--color-bg), transparent);
+            //     z-index: 2;
+            //     transition: background-color .23s ease;
+            // }
+        }
+        li {
+            scroll-snap-align: start;
+        }
+    }
+    &__wrapper{
+        // @include r(1023){
+        //     // padding-right: 150px
+        //     @include css-lock(100,150,350,767,padding-right)
+        // }
+    }
+    &__container{
+        padding-top: 1.1em;
+        padding-bottom: 1.1em;
+        mask-image: linear-gradient(to right,#000 0%,#000 80%,rgba(0,0,0,0));
+    }
+    li{
+        & + li{
+            margin-left: 1.7em;
+            & > a,
+            & > span{
+                position: relative;
+                &::before{
+                    content: '/';
+                    position: absolute;
+                    left: -1em;
+                    color: inherit;
+                }
+            }
+
+        }
+        & > span{
+            color: var(--color-text_light);
+        }
+    }
+    a{
+        text-decoration: none;
+        color: var(--color-main);
+    }
+}

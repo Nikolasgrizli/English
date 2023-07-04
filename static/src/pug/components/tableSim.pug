@@ -1,0 +1,26 @@
+mixin tableSim(data,div)
+	.table-wrapper&attributes(attributes)
+		.table-wrapper__inner
+			table.table.table_simple
+				-
+					var divider = div;
+				thead
+					tr
+						each item in data.slice(0, divider)
+							th= item
+				tbody
+					-
+						var rest = data.slice(divider);
+						var lines = rest.length / divider;
+						var x = 0;
+					while x < lines
+						tr
+							- var y = 0;
+							while y < divider
+								if(rest[0] === '')
+									- rest.shift()
+								else
+									td(colspan=(rest[1] === '') ? 2:1)!=rest.shift()
+
+								- y++
+						- x++

@@ -1,0 +1,129 @@
+.table-wrapper{
+	display: flex;
+	width: 100%;
+	border-radius: 5px;
+	overflow: hidden;
+	&__inner{
+		width: 100%;
+		display: flex;
+		border-radius: 5px;
+		border: 1px solid var(--color-bg_dark);
+		.section_light & {
+			border: 1px solid var(--color-border_table-head);
+		}
+
+	}
+	&_sticky-x{
+		@include r(1023){
+			overflow-x: auto;
+			.table-wrapper__inner{
+				min-width: var(--table-mw,800px);
+			}
+			th,
+			td{
+				&:first-child{
+					position: sticky;
+					left: 0;
+					z-index: 1;
+					background: var(--color-bg_dark);
+				}
+			}
+		}
+	}
+}
+
+.table{
+	text-align: center;
+	width: 100%;
+	border: none;
+	thead,th{
+		font-weight: 600;
+	}
+	thead{
+		line-height: 1.4;
+		td,
+		th{
+			background-color: var(--color-bg_dark);
+			&:not(:last-child){
+				border-right: 1px solid var(--color-border_table-head);
+			}
+		}
+		tr{
+			&:first-child{
+				td,th{
+					&:first-child{
+						border-top-left-radius: 5px;
+					}
+					&:last-child{
+						border-top-right-radius: 5px;
+					}
+				}
+			}
+		}
+	}
+	tbody{
+		tr{
+			th,
+			td{
+				&:not(:last-child){
+					border-right: 1px solid var(--color-bg_dark);
+				}
+			}
+			&:last-child{
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+				th,
+				td{
+					&:first-child{
+						border-bottom-left-radius: 5px;
+					}
+					&:last-child{
+						border-bottom-right-radius: 5px;
+					}
+				}
+			}
+			&:not(:last-child){
+				border-bottom: 1px solid var(--color-bg_dark);
+			}
+		}
+	}
+	tr{
+		// border-bottom: 1px solid var(--color-bg_dark);
+		th,
+		td{
+			padding: .5em 1em;
+			// border-right: 1px solid var(--color-bg_dark);
+			&:first-child{
+				text-align: left;
+			}
+
+
+		}
+
+	}
+	&_simple{
+		.section_light & {
+			thead{
+				th,
+				td{
+					background-color: var(--color-border_table-head);
+					&:not(:last-child){
+						border-right-color: var(--color-border_light);
+					}
+				}
+			}
+			tbody{
+				tr{
+					&:not(:last-child){
+						border-bottom-color: var(--color-border_table-head);
+					}
+					th,td{
+						&:not(:last-child){
+							border-right-color: var(--color-border_table-head);
+						}
+					}
+				}
+			}
+		}
+	}
+}
