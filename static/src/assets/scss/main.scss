@@ -42,10 +42,10 @@ html {
 		font-size: 8px;
 	}
 	@include rIn(1024,1920) {
-		@include css-lock(7.5, 10, 1023, 1920);
+		@include css-lock(7.5, 12, 1023, 1920);
 	}
 	@include rmin(1921) {
-		@include css-lock(10, 12, 1023, 1920);
+		@include css-lock(12, 15, 1023, 1920);
 	}
 	@supports (scrollbar-gutter: stable) {
 		overflow: auto;

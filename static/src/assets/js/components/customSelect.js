@@ -10,7 +10,7 @@ if(nSel.length){
 		const elSel = new NiceSelect(elem, {searchable: options.searchable, placeholder: options.placeholder});
 
 
-		const dropdown = elem.closest('.customSelect').querySelector('.nice-select-dropdown');
+		// const dropdown = elem.closest('.customSelect').querySelector('.nice-select-dropdown');
 		// if(dropdown){
 		// 	dropdown.insertAdjacentHTML('beforeend', `<div class="review-btns">
 		// 		<button class="btn btn_reset" type="button">Clear</button>
@@ -18,18 +18,18 @@ if(nSel.length){
 		// 	</div>`);
 		// }
 
-		elem.addEventListener('change', function (e) {
+		// elem.addEventListener('change', function (e) {
 			// console.log(elSel.selectedOptions)
-			let arr = [];
-			for ( var i = 0; i < elSel.selectedOptions.length; i++) {
+		// 	let arr = [];
+		// 	for ( var i = 0; i < elSel.selectedOptions.length; i++) {
 				// console.log( elSel.selectedOptions[i].data.value);
-				arr.push(elSel.selectedOptions[i].data.value);
-			}
-			console.log(arr.join(', '));
+		// 		arr.push(elSel.selectedOptions[i].data.value);
+		// 	}
+		// 	console.log(arr.join(', '));
 			// for ( var i = 0; i < this.selectedOptions.length; i++) {
 			// 	console.log( this.selectedOptions[i].value);
 			// }
-		})
+		// })
 	})
 }
 
@@ -74,11 +74,41 @@ if(!!tableWordFormation && !!fromSelect && !!toSelect && !!between){
 		const 	activeFrom = fromSelect.value,
 				activeTo = toSelect.value,
 				wrappers = tableWordFormation.querySelectorAll('td[data-type]'),
-				filterString = `${activeFrom}-${activeTo}`;
+				filterString = `${activeFrom}-${activeTo}`,
+				isMobile = window.matchMedia('(max-width: 767px)').matches,
+				tableOverflowContainer = tableWordFormation.querySelector('.review-table__container'),
+				tableWidthStep = tableWordFormation.querySelector('table').offsetWidth / 4,
+				positionNoun = 0,
+				positionVerb = tableWidthStep,
+				positionAdjective = tableWidthStep * 2,
+				positionAdverb = tableWidthStep * 3;
+
+
+		if(isMobile){
+			console.log(activeTo);
+			switch (activeTo) {
+				case 'noun':
+					tableOverflowContainer.scrollLeft = positionNoun;
+					break;
+				case 'verb':
+					tableOverflowContainer.scrollLeft = positionVerb;
+					break;
+				case 'adjective':
+					tableOverflowContainer.scrollLeft = positionAdjective;
+					break;
+				case 'adverb':
+					tableOverflowContainer.scrollLeft = positionAdverb;
+					break;
+				default:
+					tableOverflowContainer.scrollLeft = 0;
+					break;
+			}
+		}
+
 
 		wrappers.forEach(elem => {
 			const type = elem.dataset.type;
-			console.log(type);
+			// console.log(type);
 			if(type.includes(filterString)){
 				elem.classList.add('active');
 			}else{

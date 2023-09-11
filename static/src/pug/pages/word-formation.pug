@@ -258,30 +258,26 @@ block content
 							tr.review-table__body-row
 								td
 								td(data-type="verb-noun")
-									strong -er/-or
+									strong -ant/-ent
 									+iconWithTooltip('info', null)
-										p #[strong #[mark -er/-or]] — исполнитель действия, профессия или инструмент
+										p #[strong #[mark -ant/-ent]] — образование существительных от глаголов; имеет значение «тот, который»
 										table
 											tr
-												th train
-												td #[i тренировать]
-												th train#[mark er]
-												td #[i тренер]
+												th assist
+												td #[i помогать]
+												th assist#[mark ant]
+												td #[i помощник]
 											tr
-												th teach
-												td #[i учить]
-												th teach#[mark er]
-												td #[i учитель]
+												th depend
+												td #[i зависеть]
+												th depend#[mark ent]
+												td #[i зависимость]
 											tr
-												th write
-												td #[i писать]
-												th writ#[mark er]
-												td #[i писатель]
-											tr
-												th govern
-												td #[i управлять]
-												th govern#[mark or]
-												td #[i правитель]
+												th differ
+												td #[i отличаться]
+												th differ#[mark ent]
+												td #[i отличие]
+
 
 								td(data-type="verb-verb")
 									strong re-
@@ -310,7 +306,7 @@ block content
 												td #[i перечитывать]
 
 								td(data-type="adjective-verb")
-									strong -en
+									strong -en /
 									+iconWithTooltip('info', null)
 										p #[strong #[mark -en]] — обозначает наделение свойством, которое передаёт прилагательное, от которого образуется глаголам
 										table
@@ -585,7 +581,32 @@ block content
 												th #[mark un]chain
 												td #[i отцеплять, освобождать]
 
-								td
+								td(data-type="noun-verb")
+									strong -s-
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -s-]] замена согласной #[mark -c-] на #[mark -s-] в корне слова при образовании глаголов от существительных
+										table
+											tr
+												th house
+												td #[i дом]
+												th hou#[mark s]e
+												td #[i жить]
+											tr
+												th bus
+												td #[i автобус]
+												th bu#[mark s]e
+												td #[i ездить на автобусе]
+											tr
+												th licence
+												td #[i лицензия]
+												th licen#[mark s]e
+												td #[i выдавать лицензию]
+											tr
+												th advice
+												td #[i совет]
+												th advi#[mark s]e
+												td #[i советовать]
+
 
 								td(data-type="adjective-adjective")
 									strong in-
@@ -676,9 +697,9 @@ block content
 												td #[i популярность]
 
 								td(data-type="noun-verb,adjective-verb")
-									strong en-
+									strong en-/em-
 									+iconWithTooltip('info', null)
-										p #[strong #[mark en-]] — наделять способностью, выраженной существительным или прилагательным
+										p #[strong #[mark en-/em-]] — наделять способностью, выраженной существительным или прилагательным. #[mark em-] используется перед согласной #[mark b] или #[mark p]
 										table
 											tr
 												th courage
@@ -690,6 +711,16 @@ block content
 												td #[i способный]
 												th #[mark en]able
 												td #[i способствовать]
+											tr
+												th power
+												td #[i сила]
+												th #[mark em]power
+												td #[i усиливать]
+											tr
+												th bold
+												td #[i смелый]
+												th #[mark em]bold
+												td #[i смелеть]
 								td
 
 								td(data-type="adjective-adjective")
@@ -1112,7 +1143,31 @@ block content
 							//tenth row
 							tr.review-table__body-row
 								td
-								td
+								td(data-type="verb-noun")
+									strong -er/-or
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -er/-or]] — исполнитель действия, профессия или инструмент
+										table
+											tr
+												th train
+												td #[i тренировать]
+												th train#[mark er]
+												td #[i тренер]
+											tr
+												th teach
+												td #[i учить]
+												th teach#[mark er]
+												td #[i учитель]
+											tr
+												th write
+												td #[i писать]
+												th writ#[mark er]
+												td #[i писатель]
+											tr
+												th govern
+												td #[i управлять]
+												th govern#[mark or]
+												td #[i правитель]
 								td
 								td
 								td
@@ -1148,7 +1203,31 @@ block content
 							//eleventh row
 							tr.review-table__body-row
 								td
-								td
+								td(data-type="verb-noun")
+									strong -ess/-ine
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ess/-ine]] — образование женского рода от мужского(исполнительница действия, профессия или инструмент)
+										table
+											tr
+												th host
+												td #[i хозяин]
+												th host#[mark ess]
+												td #[i хозяйка]
+											tr
+												th lion
+												td #[i лев]
+												th lion#[mark ess]
+												td #[i львица]
+											tr
+												th hero
+												td #[i герой]
+												th hero#[mark ine]
+												td #[i героиня]
+											tr
+												th actor
+												td #[i актер]
+												th act#[mark ress]
+												td #[i актриса]
 								td
 								td
 								td
@@ -1184,7 +1263,31 @@ block content
 							//twelfth row
 							tr.review-table__body-row
 								td
-								td
+								td(data-type="verb-noun")
+									strong -ee
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ee]] —  образование существительных от глаголов; имеет значение «тот, который»
+										table
+											tr
+												th employ
+												td #[i нанимать]
+												th employ#[mark ee]
+												td #[i нанимаемый]
+											tr
+												th train
+												td #[i тренировать]
+												th train#[mark ee]
+												td #[i тренируемый]
+											tr
+												th attend
+												td #[i посещать]
+												th attend#[mark ee]
+												td #[i посещаемый]
+											tr
+												th interview
+												td #[i интервьюировать]
+												th interview#[mark ee]
+												td #[i интервьюируемый]
 								td
 								td
 								td
@@ -1210,4 +1313,118 @@ block content
 												th import#[mark ant]
 												td #[i важный]
 
+								td
+
+							//thirteenth row
+							tr.review-table__body-row
+								td
+								td
+								td
+								td
+								td
+
+								td(data-type="noun-adjective")
+									strong -ish
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ish]] — выражает национальную или территориальную принадлежность
+										table
+											tr
+												th English
+												td #[i английский]
+												th English#[mark ish]
+												td #[i англичанин]
+											tr
+												th Britain
+												td #[i Британия]
+												th Britain#[mark ish]
+												td #[i британский]
+											tr
+												th Spain
+												td #[i Испания]
+												th Spain#[mark ish]
+												td #[i испанский]
+											tr
+												th Scotland
+												td #[i Шотландия]
+												th #[mark.red Scott#[mark ish]]
+												td #[i шотландский]
+											tr
+												th Wales
+												td #[i Уэльс]
+												th #[mark.red Welsh]
+												td #[i валлийский]
+
+								td
+							//fourteenth row
+							tr.review-table__body-row
+								td
+								td
+								td
+								td
+								td
+
+								td(data-type="adjective-adjective")
+									strong Color + -ish
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -ish]] — оттенок цвета (-атый)
+										table
+											tr
+												th green
+												td #[i зеленый]
+												th green#[mark ish]
+												td #[i зеленоватый]
+											tr
+												th yellow
+												td #[i желтый]
+												th yellow#[mark ish]
+												td #[i желтоватый]
+											tr
+												th brown
+												td #[i коричневый]
+												th brown#[mark ish]
+												td #[i коричневатый]
+											tr
+												th blue
+												td #[i синий]
+												th blue#[mark ish]
+												td #[i синеватый]
+											tr
+												th red
+												td #[i красный]
+												th red#[mark ish]
+												td #[i красноватый]
+								td
+							//fifteenth row
+							tr.review-table__body-row
+								td
+								td
+								td
+								td
+								td
+
+								td(data-type="verb-adjective")
+									strong -atory
+									+iconWithTooltip('info', null)
+										p #[strong #[mark -atory]] — образование прилагательных от глаголов латинского происхождения; имеет значение «имеющий отношение к, характеризующийся, используемый для»
+										table
+											tr
+												th obligate
+												td #[i обязывать]
+												th oblig#[mark atory]
+												td #[i обязательный]
+											tr
+												th separate
+												td #[i отделять]
+												th separ#[mark atory]
+												td #[i разделяющий]
+											tr
+												th regulate
+												td #[i регулировать]
+												th regul#[mark atory]
+												td #[i регулирующий]
+											tr
+												th investigate
+												td #[i исследовать]
+												th investig#[mark atory]
+												td #[i исследовательский]
 								td

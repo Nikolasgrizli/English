@@ -1,22 +1,22 @@
 import SmoothScrollMagic from './components/smoothScroll';
-import './components/accordion';
+// import './components/accordion';
 import './components/animationContainer';
-import './components/introAnimation';
-import './components/magnific';
+// import './components/introAnimation';
+// import './components/magnific';
 // import './components/video';
 // import './components/theming';
 import './components/progressScrollAndToTopBtn';
 // import './--service/copy-on-click';
 // import './--service/iconsFilter';
-import autoContent from './components/autoContent';
-import ContactPage from './components/formComponent';
-import './components/calcPages';
+// import autoContent from './components/autoContent';
+// import ContactPage from './components/formComponent';
+// import './components/calcPages';
 // import './components/tests';
-import { MagicTriangle } from './components/menuItemTriangle';
+// import { MagicTriangle } from './components/menuItemTriangle';
 // import { HoverPreview } from './components/hoverPreview';
-import './components/reviewTable';
+// import './components/reviewTable';
 
-import './components/range-slider';
+// import './components/range-slider';
 import './components/customSelect';
 
 
@@ -24,11 +24,11 @@ import './components/customSelect';
 let smoothScrollAllPage = new SmoothScrollMagic;
 smoothScrollAllPage.init();
 
-let pagesWithForm = new ContactPage;
-pagesWithForm.innerFn();
+// let pagesWithForm = new ContactPage;
+// pagesWithForm.innerFn();
 
 
-autoContent()
+// autoContent()
 
 function isMobile() {
     return (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
@@ -52,23 +52,23 @@ document.body.className += isTouch ? ' touch' : ' no-touch';
 
 
 
-const headerMenu = document.querySelector('.header__nav');
+// const headerMenu = document.querySelector('.header__nav');
 
-if(!!headerMenu){
+// if(!!headerMenu){
 
-    // if(document.body.classList.contains('no-touch')){
-        [...headerMenu.querySelectorAll('.menu-item-has-children')].forEach(elem => {
-            // checkPopupRightPosition(elem.querySelector('.child-list'))
-            elem.addEventListener('mouseenter', (e)=>{
-                elem.classList.add('is-open');
-            })
-            elem.addEventListener('mouseleave', (e)=>{
-                elem.classList.remove('is-open');
-            })
-        })
-    // }
-	const magicTriangle = new MagicTriangle('.menu-item-has-children');
-}
+//     // if(document.body.classList.contains('no-touch')){
+//         [...headerMenu.querySelectorAll('.menu-item-has-children')].forEach(elem => {
+//             // checkPopupRightPosition(elem.querySelector('.child-list'))
+//             elem.addEventListener('mouseenter', (e)=>{
+//                 elem.classList.add('is-open');
+//             })
+//             elem.addEventListener('mouseleave', (e)=>{
+//                 elem.classList.remove('is-open');
+//             })
+//         })
+//     // }
+// 	const magicTriangle = new MagicTriangle('.menu-item-has-children');
+// }
 
 
 (function () {
@@ -97,14 +97,14 @@ if(!!headerMenu){
 // }
 
 
-jQuery(function ($) {
-	const accordion = document.getElementById('accordion1');
-	// if(!!accordion){
-	// 	const hoverPreviewAcccordion = new HoverPreview('.accordion__item', 'active', '.accordion__body');
+// jQuery(function ($) {
+// 	const accordion = document.getElementById('accordion1');
+// 	// if(!!accordion){
+// 	// 	const hoverPreviewAcccordion = new HoverPreview('.accordion__item', 'active', '.accordion__body');
 
-	// }
+// 	// }
 
-})
+// })
 jQuery(function ($) {
     $('.js-tooltipster').tooltipster({
         interactive: true,

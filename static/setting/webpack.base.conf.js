@@ -38,7 +38,7 @@ module.exports = {
         app: PATHS.src,
     },
     output: {
-        filename: `${PATHS.assets}js/[name].js`,
+        filename: `${PATHS.assets}js/[name].[contenthash].js`,
         path: PATHS.dist,
         publicPath: ''
     },
@@ -161,7 +161,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: `${PATHS.assets}css/[name].css`,
+            filename: `${PATHS.assets}css/[name].[contenthash].css`,
         }),
         new CopyWebpackPlugin({
             patterns: [{
@@ -198,11 +198,11 @@ module.exports = {
         // best way to create pages: https://github.com/vedees/webpack-template/blob/master/README.md#third-method-best
         ...PAGES.map(page => new HtmlWebpackPlugin({
             template: `${PAGES_DIR}/${page}`,
-			templateParameters: {
-				pug: pug
-			},
+			// templateParameters: {
+			// 	pug: pug
+			// },
             filename: `./${page.replace(/\.pug/, '.html')}`,
-            inject: false,
+            inject: 'body',
             minimize: false
         }))
     ],
